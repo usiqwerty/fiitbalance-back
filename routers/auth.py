@@ -11,12 +11,13 @@ from models.user import User, LoginUser, RegisterUser
 router = APIRouter(prefix='/auth')
 
 
-def create_auth_token(user: User) -> str:
+def create_auth_token(user: User) -> tuple[str, datetime.datetime]:
+    until = datetime.datetime.now() + datetime.timedelta(days=90)
     token_data = {
         'id': user.id,
-        'until': int((datetime.datetime.now() + datetime.timedelta(days=90)).timestamp())
+        'until': int(until.timestamp())
     }
-    return jwt.encode(token_data, JWT_SECRET, algorithm='HS256')
+    return jwt.encode(token_data, JWT_SECRET, algorithm='HS256'), until.astimezone(datetime.timezone.utc)
 
 
 @router.post('/login')
@@ -28,7 +29,8 @@ def login(db: DBSession,
     if user is None or user.password != input_data.password:
         raise HTTPException(status_code=401, detail="Login failed")
 
-    response.set_cookie(key="auth_token", value=create_auth_token(user))
+    token, expires = create_auth_token(user)
+    response.set_cookie(key="auth_token", value=token, expires=expires)
 
 
 @router.post('/register')
@@ -39,4 +41,6 @@ def register(db: DBSession, response: Response, data: RegisterUser):
     user = User(name=data.name, email=data.email, password=data.password)
     db.add(user)
     db.commit()
-    response.set_cookie(key="auth_token", value=create_auth_token(user))
+
+    token, expires = create_auth_token(user)
+    response.set_cookie(key="auth_token", value=token, expires=expires)
