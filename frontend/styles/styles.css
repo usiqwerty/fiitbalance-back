@@ -21,7 +21,7 @@
     font-size: 40pt;
     width: 300pt;
     font-family: 'Jomhuria', sans-serif;
-    margin: 10pt;
+    margin: 5pt;
     text-align: center;
 }
 
@@ -37,9 +37,10 @@
     font-size: 20pt;
     font-family: 'Inika', serif;
     font-weight: bold;
-    margin: 10pt;
+    margin: 30pt;
+    margin-bottom: 15pt;
     text-align: center;
-    width: 150pt;
+    width: 125pt;
     flex: 0 0 auto; 
     background-color: white;
 }
@@ -62,4 +63,17 @@
     font-weight: 400;
     font-style: normal;
 }
-  
+
+.no_account {
+    font-size: 15pt;
+    font-family: "Inika", serif;
+}
+
+.dates_tape {
+    display: flex;
+    align-items: center;
+}
+
+.tape_date {
+    
+}
