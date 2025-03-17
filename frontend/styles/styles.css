@@ -1,5 +1,6 @@
 :root {
     --disabled-color: #686868;
+    --relax-task-color: #34C59B;
 }
 
 .label {
@@ -75,5 +76,85 @@
 }
 
 .tape_date {
-    
+    font-family: 'Inika', serif;
+    font-size: 20pt;
+    margin: 20pt;
+    margin-top: 0pt;
+    font-weight: bold;
+}
+
+.margin-bottom-10pt {
+    margin-bottom: 10pt;
+}
+
+.margin-bottom-30pt {
+    margin-bottom: 30pt;
+}
+
+.plans-block {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.plans-add-block {
+    display: flex;
+    flex-direction: column;
+    font-family: 'jsMath-cmbx10', sans-serif;
+    font-size: 15pt;
+    align-items: center;
+    margin-right: 30pt;
+}
+
+.plans-add-block > h2 {
+    margin-top: 1pt;
+}
+
+
+.task-plus {
+    width: 50pt;
+    cursor: pointer;
+}
+
+.task-list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.task-note {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+    font-family: 'Jomhuria', serif;
+    font-size: 30pt;
+    border: 2pt solid black;
+    margin: 10pt;
+    margin-top: 0pt;
+    width: 350pt;
+    color: white;
+    padding: 5pt;
+    padding-top: 0;
+    background-color: #646464;
+}
+
+.task-label {
+    margin: 0;
+    flex-grow: 1;
+    height: 27pt;
+}
+
+.task-difficulty {
+    margin: 0;
+    font-family: 'Jomhuria', serif;
+    height: 27pt;
+}
+
+.task-circle {
+    margin-right: 7pt;
+    height: 20pt;
+}
+
+.relax-note {
+    background-color: var(--relax-task-color);
 }
