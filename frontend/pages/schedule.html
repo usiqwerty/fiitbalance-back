@@ -29,51 +29,89 @@
         <div class="plans-block margin-bottom-30pt">
             <div class="plans-add-block">
                 <h2>Plans:</h2>
-                <img class="task-plus" src="../resources/plus.svg" alt="plus">
+                <img class="task-plus" src="../resources/plus.svg" id="add-task-button" alt="plus">
             </div>
-            <div class="task-list">
-                <div class="task-note">
+            <div class="task-list" id="task-list">
+                <div class="task-note hidden" id="task-entry-samlpe">
                     <img class="task-circle" src="../resources/Ellipse 1.svg" alt="plus">
                     <p class="task-label">working</p>
-                    <p class="task-difficulty">9 ??</p>
+                    <p class="task-difficulty">9</p>
                 </div>
                 <div class="task-note">
                     <img class="task-circle" src="../resources/Ellipse 1.svg" alt="plus">
                     <p class="task-label">working</p>
-                    <p class="task-difficulty">9 ??</p>
+                    <p class="task-difficulty">9</p>
                 </div>
                 <div class="task-note">
                     <img class="task-circle" src="../resources/Ellipse 1.svg" alt="plus">
                     <p class="task-label">working</p>
-                    <p class="task-difficulty">9 ??</p>
+                    <p class="task-difficulty">9</p>
                 </div>
             </div>
         </div>
         <div class="plans-block">
             <div class="plans-add-block">
                 <h2>Relax:</h2>
-                <img class="task-plus" src="../resources/plus_relax.svg" alt="plus">
+                <img class="task-plus" src="../resources/plus_relax.svg" id="add-rest-button" alt="plus">
             </div>
-            <div class="task-list">
-                <div class="task-note relax-note">
+            <div class="task-list" id="rest-list">
+                <div class="task-note relax-note hidden" id="rest-entry-samlpe">
                     <img class="task-circle" src="../resources/relax_elipse.svg" alt="plus">
                     <p class="task-label">working</p>
-                    <p class="task-difficulty">9 ??</p>
+                    <p class="task-difficulty">9</p>
                 </div>
                 <div class="task-note relax-note">
                     <img class="task-circle" src="../resources/relax_elipse.svg" alt="plus">
                     <p class="task-label">working</p>
-                    <p class="task-difficulty">9 ??</p>
+                    <p class="task-difficulty">9</p>
                 </div>
                 <div class="task-note relax-note">
                     <img class="task-circle" src="../resources/relax_elipse.svg" alt="plus">
                     <p class="task-label">working</p>
-                    <p class="task-difficulty">9 ??</p>
+                    <p class="task-difficulty">9</p>
                 </div>
+            </div>
+        </div>
+
+        <div class="overlay-background hidden" id="task-add-block">
+            <div class="add-task-card" id="task-add-card">
+                <input class="input_field_1 jomhuria-regular difficulty-input-border-width task-label-input" id="task-title-input" type="text" placeholder="task name">
+                <textarea class="input_field_2 jomhuria-regular difficulty-input-border-width" type="text" placeholder="description" id="task-description-area"></textarea>
+                <div class="difficulty-block">
+                    <div class="difficulty-buttons">
+                        <img class="dif-plus" src="../resources/difficulty plus.svg" alt="plus">
+                        <img class="dif-plus" src="../resources/difficulty minus.svg" alt="plus">
+                    </div>
+                    <div class="difficulty-label-block">
+                        <p class="difficulty-label">difficulty</p>
+                        <p class="difficulty-counter-label">5/10</p>
+                    </div> 
+                </div> 
+                <button class="sign_up_button" id="add-task-final-button">add task</button>
+
+            </div>
+        </div>
+
+        <div class="overlay-background hidden" id="rest-add-block">
+            <div class="add-task-card" id="rest-add-card">
+                <input class="input_field_1 jomhuria-regular difficulty-input-border-width task-label-input" type="text" placeholder="rest name" id="rest-title-input">
+                <textarea class="input_field_2 jomhuria-regular difficulty-input-border-width" type="text" placeholder="description" id="rest-description-area"></textarea>
+                <div class="difficulty-block">
+                    <div class="difficulty-buttons">
+                        <img class="dif-plus" src="../resources/rest plus.svg" alt="plus">
+                        <img class="dif-plus" src="../resources/rest minus.svg" alt="plus">
+                    </div>
+                    <div class="difficulty-label-block">
+                        <p class="difficulty-label">rest level</p>
+                        <p class="difficulty-counter-label">5/10</p>
+                    </div> 
+                </div> 
+                <button class="sign_up_button" id="add-rest-final-button">add rest</button>
+
             </div>
         </div>
     </div>
     </div>
-    <script src="../scripts/login.js"></script>
+    <script src="../scripts/schedule.js"></script>
 </body>
 </html>

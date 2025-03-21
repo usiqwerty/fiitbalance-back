@@ -30,6 +30,33 @@
     color: var(--disabled-color);
 }
 
+.input_field_2 {
+    border: 2pt solid black;
+    border-radius: 0;
+    resize: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-top: 5pt;
+    font-size: 40pt;
+    width: 300pt;
+    height: 130pt;
+    font-family: 'Jomhuria', sans-serif;
+    margin: 5pt;
+    margin-bottom: 10pt;
+}
+
+.input_field_2::placeholder{
+    color: var(--disabled-color);
+    text-align: center;
+}
+
+.difficulty-input-border-width {
+    border: 2.5pt solid black;
+}
+
+.task-label-input {
+    margin-top: 20pt;
+}
+
 .sign_up_button {
     border: 2pt solid black;
     border-radius: 0;
@@ -124,7 +151,7 @@
 
 .task-note {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     flex-direction: row;
     font-family: 'Jomhuria', serif;
     font-size: 30pt;
@@ -136,6 +163,7 @@
     padding: 5pt;
     padding-top: 0;
     background-color: #646464;
+    padding-top: 5pt;
 }
 
 .task-label {
@@ -157,4 +185,74 @@
 
 .relax-note {
     background-color: var(--relax-task-color);
+}
+
+.overlay-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(80, 80, 80, 0.801);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-task-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.difficulty-block {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.difficulty-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.difficulty-label-block {
+    font-size: 40pt;
+    letter-spacing: 1pt;
+    font-weight: bold;
+    font-family: 'Jomhuria', serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25pt;
+}
+
+.difficulty-counter-label {
+    margin: 0pt;
+    font-size: 60pt;
+}
+
+.difficulty-label {
+    margin: 0pt;
+    margin-top: 10pt;
+}
+
+.dif-plus {
+    size: 10pt;
+    margin-top: 5pt;
+}
+
+.dif-plus:hover {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }
