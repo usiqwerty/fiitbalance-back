@@ -1,14 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Менеджер задач</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-<h1>Шикарный веб-сайт</h1>
-Поставьте 100 баллов
-<div>
-    <img src="/static/img/logo.jpg">
+<h1>Мои задачи</h1>
+<div id="loading">Загрузка задач...</div>
+<div id="tasks-list"></div>
+<div class="footer">
+    <img src="/static/img/logo.jpg" alt="Логотип">
+    <p>Шикарный веб-сайт для управления задачами</p>
 </div>
+
+<script>
+    async function loadTasks() {
+        try {
+            const response = await fetch('/api/tasks/', {
+                credentials: 'include'
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка загрузки задач: ' + response.status);
+            }
+
+            const data = await response.json();
+            renderTasks(data.tasks);
+            document.getElementById('loading').style.display = 'none';
+        } catch (error) {
+            document.getElementById('loading').textContent = error.message;
+            console.error('Ошибка:', error);
+        }
+    }
+
+    function renderTasks(tasks) {
+        const container = document.getElementById('tasks-list');
+        container.innerHTML = tasks.map(task => `
+                <div class="task-card">
+                    <h3>${task.name}</h3>
+                    <p>${task.text}</p>
+                    <div class="dates">
+                        <span>Начало: ${new Date(task.start).toLocaleDateString('ru-RU')}</span>
+                        <span>Окончание: ${new Date(task.end).toLocaleDateString('ru-RU')}</span>
+                    </div>
+                </div>
+            `).join('');
+
+        if (tasks.length === 0) {
+            container.innerHTML = '<p>У вас пока нет задач</p>';
+        }
+    }
+
+    // Загрузка задач при открытии страницы
+    window.addEventListener('DOMContentLoaded', loadTasks);
+</script>
 </body>
 </html>
