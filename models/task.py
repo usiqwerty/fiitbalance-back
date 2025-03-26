@@ -19,4 +19,3 @@ class TaskAdd(BaseModel):
     text: str
     start: datetime.datetime
     end: datetime.datetime
-
