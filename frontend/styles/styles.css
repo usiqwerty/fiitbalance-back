@@ -177,7 +177,15 @@
     font-family: 'Jomhuria', serif;
     height: 27pt;
 }
-
+.task-deadline {
+    position: absolute;
+    bottom: 5pt;
+    right: 10pt;
+    font-family: 'Jomhuria', serif;
+    font-size: 20pt;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
 .task-circle {
     margin-right: 7pt;
     height: 20pt;

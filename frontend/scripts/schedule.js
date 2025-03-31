@@ -25,10 +25,11 @@ restAddBlock.addEventListener('click', (event) => {
 const taskListEntry = document.getElementById('task-entry-samlpe')
 const taskList= document.getElementById('task-list')
 
-function addTaskToList(taskLabel, taskDifficulty) {
-    const newElem = taskList.appendChild(taskListEntry.cloneNode(true)); 
+function addTaskToList(taskLabel, taskDifficulty, deadline) {
+    const newElem = taskList.appendChild(taskListEntry.cloneNode(true));
     newElem.getElementsByClassName('task-label')[0].innerText = taskLabel;
     newElem.getElementsByClassName('task-difficulty')[0].innerText = `${taskDifficulty}`;
+    newElem.querySelector('.task-deadline').textContent = deadline;
     newElem.classList.remove("hidden");
     newElem.id = '';
 }
@@ -36,10 +37,11 @@ function addTaskToList(taskLabel, taskDifficulty) {
 const restListEntry = document.getElementById('rest-entry-samlpe')
 const restList = document.getElementById('rest-list')
 
-function addRestToList(taskLabel, taskDifficulty) {
-    const newElem = restList.appendChild(restListEntry.cloneNode(true)); 
+function addRestToList(taskLabel, taskDifficulty, deadline) {
+    const newElem = restList.appendChild(restListEntry.cloneNode(true));
     newElem.getElementsByClassName('task-label')[0].innerText = taskLabel;
     newElem.getElementsByClassName('task-difficulty')[0].innerText = `${taskDifficulty}`;
+    newElem.querySelector('.task-deadline').textContent = deadline;
     newElem.classList.remove("hidden");
     newElem.id = '';
 }
@@ -47,26 +49,27 @@ function addRestToList(taskLabel, taskDifficulty) {
 const addTaskFinalButton = document.getElementById('add-task-final-button');
 const taskTitleInput = document.getElementById('task-title-input');
 const taskDescriptionArea = document.getElementById('task-description-area');
+const taskDeadlineInput = document.getElementById('task-deadline-input');
 
 addTaskFinalButton.addEventListener('click', (event) => {
     const title = taskTitleInput.value;
     const description = taskDescriptionArea.value;
+    const deadline = taskDeadlineInput.value;
     const difficulty = 0;
-    // TODO: Обращение к бэкенду, получение подтверждения
-    addTaskToList(title, difficulty);
+    addTaskToList(title, difficulty, deadline);
     taskAddBlock.classList.add("hidden");
 })
 
 const addRestFinalButton = document.getElementById('add-rest-final-button');
-
 const restTitleInput = document.getElementById('rest-title-input');
 const restDescriptionArea = document.getElementById('rest-description-area');
+const restDeadlineInput = document.getElementById('rest-deadline-input');
 
 addRestFinalButton.addEventListener('click', (event) => {
     const title = restTitleInput.value;
     const description = restDescriptionArea.value;
+    const deadline = restDeadlineInput.value;
     const difficulty = 0;
-    // TODO: Обращение к бэкенду, получение подтверждения
-    addRestToList(title, difficulty);
+    addRestToList(title, difficulty, deadline);
     restAddBlock.classList.add("hidden");
 })
