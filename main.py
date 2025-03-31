@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from sqlmodel import SQLModel
 
-from routers import auth, tasks
+from routers import api, frontend
 from database import engine
 
 
@@ -15,5 +15,5 @@ async def lifespan(_app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-app.include_router(auth.router)
-app.include_router(tasks.router)
+app.include_router(api.router)
+app.mount("/", frontend.front_app)

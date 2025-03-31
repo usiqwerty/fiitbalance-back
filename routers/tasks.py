@@ -1,7 +1,8 @@
 from typing import Annotated
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from fastapi.params import Depends
+from sqlmodel import select
 
 from database import DBSession
 from dependencies import logged_in_user
@@ -12,8 +13,20 @@ router = APIRouter(prefix='/tasks')
 
 
 @router.get('/')
-def get_tasks(user: Annotated[User, Depends(logged_in_user)]):
-    return {"msg": "Not implemented yet"}
+def get_tasks(db: DBSession, user: Annotated[User, Depends(logged_in_user)]):
+    query = select(Task).where(Task.user_id == user.id)
+    tasks = db.exec(query)
+    return tasks.all()
+
+
+@router.delete('/delete_task')
+def get_tasks(db: DBSession, user: Annotated[User, Depends(logged_in_user)], task_id: int):
+    query = select(Task).where(Task.user_id == user.id, Task.id == task_id)
+    task = db.exec(query).first()
+    if task is None:
+        raise HTTPException(status_code=404, detail="Task not found")
+    db.delete(task)
+    db.commit()
 
 
 @router.post("/add_task")
