@@ -38,6 +38,7 @@ class TaskManager {
             const difficulty = 0;
             const newElem = addTaskToList(title, difficulty, deadline);
             this.hide();
+            // TODO: Обращение к бэкенду, получение подтверждения
             this.addedTasksList.push(new Task(0, title, description, 0, 1, newElem));
         });
 
@@ -76,6 +77,7 @@ class RestManager {
             const difficulty = 0;
             const newElem = addRestToList(title, difficulty, deadline);
             this.hide();
+            // TODO: Обращение к бэкенду, получение подтверждения
             this.addedRestsList.push(new Rest(0, title, description, 0, 1, newElem));
         });
 
