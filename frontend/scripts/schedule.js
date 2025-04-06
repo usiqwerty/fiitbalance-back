@@ -31,15 +31,48 @@ class TaskManager {
         this.taskDeadlineInput = document.getElementById('task-deadline-input');
         this.addedTasksList = [];
 
-        this.addTaskFinalButton.addEventListener('click', (event) => {
+        this.addTaskFinalButton.addEventListener('click', async (event) => {
             const title = this.taskTitleInput.value;
             const description = this.taskDescriptionArea.value;
             const deadline = this.taskDeadlineInput.value;
             const difficulty = 0;
-            const newElem = addTaskToList(title, difficulty, deadline);
-            this.hide();
+
+            //const newElem = addTaskToList(title, difficulty, deadline);
+            //this.hide();
             // TODO: Обращение к бэкенду, получение подтверждения
-            this.addedTasksList.push(new Task(0, title, description, 0, 1, newElem));
+            //this.addedTasksList.push(new Task(0, title, description, 0, 1, newElem));
+            
+            try {
+                // 1. Отправляем данные на сервер
+                const response = await fetch('http://localhost:8000/api/tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        description: description,
+                        deadline: deadline,
+                        difficulty: difficulty
+                    })
+                });
+        
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.detail || 'Ошибка при создании задачи');
+                }
+                const createdTask = await response.json();
+        
+                const newElem = addTaskToList(title, difficulty, deadline);
+                this.hide();
+                this.addedTasksList.push(
+                    new Task(createdTask.id, title, description, 0, 1, newElem)
+                );
+        
+            } catch (error) {
+                console.error('Ошибка при создании задачи:', error);
+                alert(`Не удалось создать задачу: ${error.message}`);
+            }
         });
 
         this.taskAddBlock.addEventListener('click', (event) => {
@@ -70,15 +103,47 @@ class RestManager {
         this.restDeadlineInput = document.getElementById('rest-deadline-input');
         this.addedRestsList = [];
 
-        this.addRestFinalButton.addEventListener('click', (event) => {
+        this.addRestFinalButton.addEventListener('click', async (event) => {
             const title = this.restTitleInput.value;
             const description = this.restDescriptionArea.value;
             const deadline = this.restDeadlineInput.value;
             const difficulty = 0;
-            const newElem = addRestToList(title, difficulty, deadline);
-            this.hide();
+            //const newElem = addRestToList(title, difficulty, deadline);
+            //this.hide();
             // TODO: Обращение к бэкенду, получение подтверждения
-            this.addedRestsList.push(new Rest(0, title, description, 0, 1, newElem));
+            //this.addedRestsList.push(new Rest(0, title, description, 0, 1, newElem));
+
+            try {
+                const response = await fetch('http://localhost:8000/api/tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        description: description,
+                        deadline: deadline,
+                        difficulty: difficulty
+                    })
+                });
+        
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.detail || 'Ошибка при создании задачи');
+                }
+        
+                const createdTask = await response.json();
+        
+                const newElem = addRestToList(title, difficulty, deadline);
+                this.hide();
+                this.addedRestsList.push(
+                    new Rest(createdTask.id, title, description, 0, 1, newElem)
+                );
+        
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert(`Ошибка: ${error.message}`);
+            }
         });
 
         this.restAddBlock.addEventListener('click', (event) => {
@@ -171,3 +236,36 @@ class BalanceScales {
 
 const balanceScales = new BalanceScales("#balance-scales");
 balanceScales.setValue(0.5);
+
+
+async function loadTasks() {
+    try {
+        const response = await fetch('/api/tasks', {
+            method: 'GET',
+            credentials: 'include'
+        });
+
+        if (!response.ok) {
+            throw new Error('Ошибка загрузки задач');
+        }
+
+        const tasks = await response.json();
+        tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+
+        this.addedTasksList = [];
+        
+        tasks.forEach(task => {
+            const newElem = addTaskToList(task.title, task.difficulty, task.deadline);
+            this.addedTasksList.push(
+                new Task(task.id, task.title, task.description, 0, 1, newElem)
+            );
+        });
+
+    } catch (error) {
+        console.error('Ошибка:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadTasks();
+});
