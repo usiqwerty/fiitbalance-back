@@ -1,35 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>fiitobalance</title>
-    <link rel="stylesheet" href="../styles/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Jomhuria&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/jsmath-cmbx10" rel="stylesheet">
-    <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Schedule - fiitobalance{% endblock %}
+
+{% block content %}
 <h3 class="label">fiitobalance</h3>
 <div class="centered-container">
     <div class="dates_tape margin-bottom-10pt">
         <p class="tape_date"><a href="/">4th Of March</a></p>
-        <img class="tape_date" src="../resources/Arrow 2.svg" alt="SVG Image">
-        <p class="tape_date">5th Of March</p>
-        <img class="tape_date" src="../resources/Arrow 1.svg" alt="SVG Image">
+        <img class="tape_date" src="{{ url_for('static', path='/resources/Arrow 2.svg') }}" alt="SVG Image">
+        <p class="tape_date">{{ current_date }}</p>
+        <img class="tape_date" src="{{ url_for('static', path='/resources/Arrow 1.svg') }}" alt="SVG Image">
         <p class="tape_date"><a href="/">6th Of March</a></p>
     </div>
-    <input type="range" id="balance-scales" class="balance-scales" name="volume" min="0" max="450" disabled/>
     <div class="plans-block margin-bottom-30pt">
         <div class="plans-add-block">
             <h2>Plans:</h2>
-            <img class="task-plus" src="../resources/plus.svg" id="add-task-button" alt="plus">
+            <img class="task-plus" src="../static/resources/plus.svg" id="add-task-button" alt="plus">
         </div>
         <div class="task-list" id="task-list">
             <div class="task-note hidden" id="task-entry-samlpe">
-                <img class="task-circle" src="../resources/Ellipse 1.svg" alt="plus">
+                <img class="task-circle" src="../static/resources/Ellipse 1.svg" alt="plus">
                 <p class="task-label">working</p>
                 <p class="task-difficulty">9</p>
                 <p class="task-deadline"></p>
@@ -39,11 +29,11 @@
     <div class="plans-block">
         <div class="plans-add-block">
             <h2>Relax:</h2>
-            <img class="task-plus" src="../resources/plus_relax.svg" id="add-rest-button" alt="plus">
+            <img class="task-plus" src="../static/resources/plus_relax.svg" id="add-rest-button" alt="plus">
         </div>
         <div class="task-list" id="rest-list">
             <div class="task-note relax-note hidden" id="rest-entry-samlpe">
-                <img class="task-circle" src="../resources/relax_elipse.svg" alt="plus">
+                <img class="task-circle" src="../static/resources/relax_elipse.svg" alt="plus">
                 <p class="task-label">working</p>
                 <p class="task-difficulty">9</p>
                 <p class="task-deadline"></p>
@@ -62,8 +52,8 @@
                    min="<?= date('Y-m-d') ?>">
             <div class="difficulty-block">
                 <div class="difficulty-buttons">
-                    <img class="dif-plus" src="../resources/difficulty plus.svg" alt="plus">
-                    <img class="dif-plus" src="../resources/difficulty minus.svg" alt="plus">
+                    <img class="dif-plus" src="../static/resources/difficulty plus.svg" alt="plus">
+                    <img class="dif-plus" src="../static/resources/difficulty minus.svg" alt="plus">
                 </div>
                 <div class="difficulty-label-block">
                     <p class="difficulty-label">difficulty</p>
@@ -85,8 +75,8 @@
                    min="<?= date('Y-m-d') ?>">
             <div class="difficulty-block">
                 <div class="difficulty-buttons">
-                    <img class="dif-plus" src="../resources/rest plus.svg" alt="plus">
-                    <img class="dif-plus" src="../resources/rest minus.svg" alt="plus">
+                    <img class="dif-plus" src="../static/resources/rest plus.svg" alt="plus">
+                    <img class="dif-plus" src="../static/resources/rest minus.svg" alt="plus">
                 </div>
                 <div class="difficulty-label-block">
                     <p class="difficulty-label">rest level</p>
@@ -97,6 +87,8 @@
         </div>
     </div>
 </div>
-<script src="../scripts/schedule.js"></script>
-</body>
-</html>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='/scripts/schedule.js') }}"></script>
+{% endblock %}
