@@ -33,4 +33,6 @@ def get_tasks(db: DBSession, user: Annotated[User, Depends(logged_in_user)], tas
 def add_task(db: DBSession, user: Annotated[User, Depends(logged_in_user)], task: TaskAdd):
     sql_task = Task(user_id=user.id, name=task.name, text=task.text, start=task.start, end=task.end)
     db.add(sql_task)
+    
     db.commit()
+    return {"id": sql_task.id}

@@ -1,5 +1,6 @@
 const apiBaseUrl = "http://127.0.0.1:8000";
-const redirectUrl = "./schedule.html";
+const redirectUrl = "/schedule";
+
 
 function setErrorMessage(msg) {
     if (msg === undefined) {

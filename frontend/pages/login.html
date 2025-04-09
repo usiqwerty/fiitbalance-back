@@ -14,3 +14,7 @@
 <button class="sign_up_button" id="login-btn">sign in</button>
 <p class="no_account">No account yet? <a href="{{ url_for('register') }}">Sign up!</a></p>
 {% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='/scripts/login.js') }}"></script>
+{% endblock %}

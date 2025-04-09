@@ -43,17 +43,23 @@ class TaskManager {
             //this.addedTasksList.push(new Task(0, title, description, 0, 1, newElem));
             
             try {
-                // 1. Отправляем данные на сервер
-                const response = await fetch('http://localhost:8000/api/tasks', {
+                console.log(JSON.stringify({
+                    "title": title,
+                    "description": description,
+                    "deadline": deadline,
+                    "difficulty": difficulty
+                }));
+                const response = await fetch('/api/tasks/add_task', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
+                    
                     body: JSON.stringify({
-                        title: title,
-                        description: description,
-                        deadline: deadline,
-                        difficulty: difficulty
+                        "name": title,
+                        "text": description,
+                        "start": "2023-10-01T10:00:00",
+                        "end": "2023-10-01T12:00:00"
                     })
                 });
         
@@ -83,8 +89,8 @@ class TaskManager {
     }
 
     show(title = '', description = '', deadline = '') {
-        this.taskTitleInput.text = title;
-        this.taskDescriptionArea.text = description;
+        this.taskTitleInput.value = title;
+        this.taskDescriptionArea.innerText = description;
         // this.taskDeadlineInput.value = deadline;
         this.taskAddBlock.classList.remove("hidden");
     }
@@ -192,7 +198,8 @@ function addTaskToList(taskLabel, taskDifficulty, deadline) {
     newElem.classList.remove("hidden");
     newElem.addEventListener('click', (event) => {
         const task = taskManager.addedTasksList.find(task => task.dom_element === newElem);
-        taskManager.show(task.title, task.description, task.deadline);
+        console.log(task);
+        taskManager.show("man...", task.text, task.deadline);
     });
     return newElem;
 }
@@ -240,9 +247,9 @@ balanceScales.setValue(0.5);
 
 async function loadTasks() {
     try {
-        const response = await fetch('/api/tasks', {
+        const response = await fetch('/api/tasks/', {
             method: 'GET',
-            credentials: 'include'
+            credentials: 'include'  
         });
 
         if (!response.ok) {
@@ -250,14 +257,14 @@ async function loadTasks() {
         }
 
         const tasks = await response.json();
+        console.log(tasks);
         tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
 
-        this.addedTasksList = [];
         
         tasks.forEach(task => {
-            const newElem = addTaskToList(task.title, task.difficulty, task.deadline);
-            this.addedTasksList.push(
-                new Task(task.id, task.title, task.description, 0, 1, newElem)
+            const newElem = addTaskToList(task["name"], 5, 0);
+            taskManager.addedTasksList.push(
+                new Task(task.id, task["name"], task["text"], 0, 1, newElem)
             );
         });
 
