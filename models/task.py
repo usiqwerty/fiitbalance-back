@@ -12,6 +12,7 @@ class Task(SQLModel, table=True):
     text: str
     start: datetime.datetime
     end: datetime.datetime
+    difficulty: int
 
 
 class TaskAdd(BaseModel):
@@ -19,3 +20,4 @@ class TaskAdd(BaseModel):
     text: str
     start: datetime.datetime
     end: datetime.datetime
+    difficulty: int
