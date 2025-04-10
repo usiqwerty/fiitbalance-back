@@ -31,6 +31,7 @@ def get_tasks(db: DBSession, user: Annotated[User, Depends(logged_in_user)], tas
 
 @router.post("/add_task")
 def add_task(db: DBSession, user: Annotated[User, Depends(logged_in_user)], task: TaskAdd):
-    sql_task = Task(user_id=user.id, name=task.name, text=task.text, start=task.start, end=task.end)
+    sql_task = Task(user_id=user.id, name=task.name, text=task.text,
+                    start=task.start, end=task.end, difficulty=task.difficulty)
     db.add(sql_task)
     db.commit()
