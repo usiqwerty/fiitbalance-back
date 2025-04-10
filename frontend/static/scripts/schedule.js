@@ -198,8 +198,7 @@ function addTaskToList(taskLabel, taskDifficulty, deadline) {
     newElem.classList.remove("hidden");
     newElem.addEventListener('click', (event) => {
         const task = taskManager.addedTasksList.find(task => task.dom_element === newElem);
-        console.log(task);
-        taskManager.show("man...", task.text, task.deadline);
+        taskManager.show(task.name, task.text, task.deadline);
     });
     return newElem;
 }
