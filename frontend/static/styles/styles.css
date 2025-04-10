@@ -1,0 +1,314 @@
+:root {
+    --disabled-color: #686868;
+    --relax-task-color: #34C59B;
+}
+
+.label {
+    font-family: 'jsMath-cmbx10', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 30pt;
+}
+
+.label_gap_login {
+    margin-bottom: 100pt;
+}
+
+.input_field_1{
+    border: 2pt solid black;
+    border-radius: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-top: 5pt;
+    font-size: 40pt;
+    width: 300pt;
+    font-family: 'Jomhuria', sans-serif;
+    margin: 5pt;
+    text-align: center;
+}
+
+.input_field_1::placeholder{
+    color: var(--disabled-color);
+}
+
+.input_field_2 {
+    border: 2pt solid black;
+    border-radius: 0;
+    resize: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-top: 5pt;
+    font-size: 40pt;
+    width: 300pt;
+    height: 130pt;
+    font-family: 'Jomhuria', sans-serif;
+    margin: 5pt;
+    margin-bottom: 10pt;
+}
+
+.input_field_2::placeholder{
+    color: var(--disabled-color);
+    text-align: center;
+}
+
+.difficulty-input-border-width {
+    border: 2.5pt solid black;
+}
+
+.task-label-input {
+    margin-top: 20pt;
+}
+
+.sign_up_button {
+    border: 2pt solid black;
+    border-radius: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 5pt;
+    font-size: 20pt;
+    font-family: 'Inika', serif;
+    font-weight: bold;
+    margin: 30pt;
+    margin-bottom: 15pt;
+    text-align: center;
+    width: 125pt;
+    flex: 0 0 auto; 
+    background-color: white;
+}
+
+.sign_up_button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+.centered-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.jomhuria-regular {
+    font-family: "Jomhuria", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.no_account {
+    font-size: 15pt;
+    font-family: "Inika", serif;
+}
+
+.dates_tape {
+    display: flex;
+    align-items: center;
+}
+
+.tape_date {
+    font-family: 'Inika', serif;
+    font-size: 20pt;
+    margin: 20pt;
+    margin-top: 0pt;
+    font-weight: bold;
+}
+
+.margin-bottom-10pt {
+    margin-bottom: 10pt;
+}
+
+.margin-bottom-30pt {
+    margin-bottom: 30pt;
+}
+
+.plans-block {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.plans-add-block {
+    display: flex;
+    flex-direction: column;
+    font-family: 'jsMath-cmbx10', sans-serif;
+    font-size: 15pt;
+    align-items: center;
+    margin-right: 30pt;
+}
+
+.plans-add-block > h2 {
+    margin-top: 1pt;
+}
+
+
+.task-plus {
+    width: 50pt;
+    cursor: pointer;
+}
+
+.task-list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.task-note {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    font-family: 'Jomhuria', serif;
+    font-size: 30pt;
+    border: 2pt solid black;
+    margin: 10pt;
+    margin-top: 0pt;
+    width: 350pt;
+    color: white;
+    padding: 5pt;
+    padding-top: 0;
+    background-color: #646464;
+    padding-top: 5pt;
+}
+
+.task-label {
+    margin: 0;
+    flex-grow: 1;
+    height: 27pt;
+}
+
+.task-difficulty {
+    margin: 0;
+    font-family: 'Jomhuria', serif;
+    height: 27pt;
+}
+.task-deadline {
+    position: absolute;
+    bottom: 5pt;
+    right: 10pt;
+    font-family: 'Jomhuria', serif;
+    font-size: 20pt;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+.task-circle {
+    margin-right: 7pt;
+    height: 20pt;
+}
+
+.relax-note {
+    background-color: var(--relax-task-color);
+}
+
+.overlay-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(80, 80, 80, 0.801);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-task-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.task-note:hover {
+    cursor: pointer;
+}
+
+.difficulty-block {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.difficulty-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.difficulty-label-block {
+    font-size: 40pt;
+    letter-spacing: 1pt;
+    font-weight: bold;
+    font-family: 'Jomhuria', serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25pt;
+}
+
+.difficulty-counter-label {
+    margin: 0pt;
+    font-size: 60pt;
+}
+
+.difficulty-label {
+    margin: 0pt;
+    margin-top: 10pt;
+}
+
+.dif-plus {
+    size: 10pt;
+    margin-top: 5pt;
+}
+
+.dif-plus:hover {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.balance-scales {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 450pt;
+    height: 15px;
+    background: linear-gradient(to right, red, yellow, green);
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 10pt;
+}
+
+.balance-scales::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 3px;
+    height: 30px;
+    background: black;
+    cursor: pointer;
+    border: none;
+    margin-top: -8px;
+}
+
+.balance-scales::-moz-range-thumb {
+    width: 3px;
+    height: 30px;
+    background: black;
+    border: none;
+    cursor: pointer;
+}
+
+.balance-scales::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, red, yellow, green);
+    border-radius: 5px;
+}
+
+.balance-scales::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, red, yellow, green);
+    border-radius: 5px;
+}
