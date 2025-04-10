@@ -10,8 +10,8 @@ class Task(SQLModel, table=True):
     user_id: int
     name: str
     text: str
-    start: datetime.datetime
-    end: datetime.datetime
+    start: datetime.date
+    end: datetime.date
     difficulty: int
 
 

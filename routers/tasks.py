@@ -1,3 +1,4 @@
+import datetime
 from typing import Annotated
 
 from fastapi import APIRouter, HTTPException
@@ -19,6 +20,13 @@ def get_tasks(db: DBSession, user: Annotated[User, Depends(logged_in_user)]):
     return tasks.all()
 
 
+@router.get("/for_date")
+def get_tasks_for_day(db: DBSession, user: Annotated[User, Depends(logged_in_user)], date: datetime.date):
+    query = select(Task).where(Task.user_id == user.id, Task.start == date)
+    tasks = db.exec(query)
+    return tasks.all()
+
+
 @router.delete('/delete_task')
 def get_tasks(db: DBSession, user: Annotated[User, Depends(logged_in_user)], task_id: int):
     query = select(Task).where(Task.user_id == user.id, Task.id == task_id)
@@ -32,6 +40,6 @@ def get_tasks(db: DBSession, user: Annotated[User, Depends(logged_in_user)], tas
 @router.post("/add_task")
 def add_task(db: DBSession, user: Annotated[User, Depends(logged_in_user)], task: TaskAdd):
     sql_task = Task(user_id=user.id, name=task.name, text=task.text,
-                    start=task.start, end=task.end, difficulty=task.difficulty)
+                    start=task.start.date(), end=task.end.date(), difficulty=task.difficulty)
     db.add(sql_task)
     db.commit()
