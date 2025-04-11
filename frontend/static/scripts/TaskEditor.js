@@ -2,28 +2,25 @@ import { Task } from './Task.js';
 
 
 export class TaskEditor {
-    constructor(taskManager) {
+    constructor() {
         this.taskAddBlock = document.getElementById('task-add-block');
         this.addTaskFinalButton = document.getElementById('add-task-final-button');
         this.taskTitleInput = document.getElementById('task-title-input');
         this.taskDescriptionArea = document.getElementById('task-description-area');
         this.taskDeadlineInput = document.getElementById('task-deadline-input');
         this.taskAddCard = document.getElementById('task-add-card');
-        this.taskManager = taskManager;
 
         this.addTaskFinalButton.addEventListener('click', async (event) => {
             const title = this.taskTitleInput.value;
             const description = this.taskDescriptionArea.value;
             const deadline = this.taskDeadlineInput.value;
-            const difficulty = 0;
+            let difficulty = 5;
+
+            if (this.taskManager.isRest) {
+                difficulty *= -1;
+            }
             
             try {
-                console.log(JSON.stringify({
-                    "title": title,
-                    "description": description,
-                    "deadline": deadline,
-                    "difficulty": difficulty
-                }));
                 const response = await fetch('/api/tasks/add_task', {
                     method: 'POST',
                     headers: {
@@ -35,7 +32,7 @@ export class TaskEditor {
                         "text": description,
                         "start": "2023-10-01T10:00:00",
                         "end": "2023-10-01T12:00:00",
-                        "difficulty": 5
+                        "difficulty": difficulty
                     })
                 });
         
@@ -44,12 +41,8 @@ export class TaskEditor {
                     throw new Error(errorData.detail || 'Ошибка при создании задачи');
                 }
                 const createdTask = await response.json();
-                
-                const newElem = this.taskManager.addTaskToList(title, difficulty, deadline);
+                const newElem = this.taskManager.addTaskToList(new Task(createdTask.id, title, description, difficulty, 0, 1, 0));
                 this.hide();
-                this.taskManager.addedTasksList.push(
-                    new Task(createdTask.id, title, description, 0, 1, newElem)
-                );
                 
             } catch (error) {
                 console.error('Ошибка при создании задачи:', error);
@@ -68,7 +61,8 @@ export class TaskEditor {
         this.taskAddBlock.classList.add("hidden");
     }
 
-    show(title = '', description = '', deadline = '') {
+    show(taskManager, title = '', description = '', deadline = '') {
+        this.taskManager = taskManager;
         this.taskTitleInput.value = title;
         this.taskDescriptionArea.innerText = description;
         // this.taskDeadlineInput.value = deadline;

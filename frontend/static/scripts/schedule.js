@@ -6,9 +6,11 @@ import { BalanceScales } from './BalanceScales.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const workManager = new TaskManager(document.getElementById('work-list-block'));
-    const taskEditor = new TaskEditor(workManager);
+    const taskEditor = new TaskEditor();
     workManager.setTaskEditor(taskEditor);
-    console.log(document.getElementById('work-list-block'));
+
+    const restManager = new TaskManager(document.getElementById('rest-list-block'), true);
+    restManager.setTaskEditor(taskEditor);
     
     
     const balanceScales = new BalanceScales("#balance-scales");

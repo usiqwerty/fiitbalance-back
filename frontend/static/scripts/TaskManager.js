@@ -2,15 +2,16 @@ import { Task } from './Task.js';
 
 
 export class TaskManager {
-    constructor(listElement) {
+    constructor(listElement, isRest=false) {
         this.listElement = listElement;
         this.addedTasksList = [];
-        
+
+        this.isRest = isRest;
         this.taskList = this.listElement.querySelector('.task-list')
         this.taskListEntry = this.taskList.querySelector('.task-entry-samlpe')
 
         
-        this.addTaskButton = document.getElementById('add-task-button');
+        this.addTaskButton = this.listElement.querySelector('.task-plus');
 
         this.loadTasks();
     }
@@ -26,16 +27,16 @@ export class TaskManager {
                 throw new Error('Ошибка загрузки задач');
             }
     
-            const tasks = await response.json();
-            console.log(tasks);
+            let tasks = await response.json();
             tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
-    
-            
+            if (!this.isRest){
+                tasks = tasks.filter(task => task["difficulty"] > 0);
+            }
+            else {
+                tasks = tasks.filter(task => task["difficulty"] < 0);
+            }
             tasks.forEach(task => {
-                const newElem = this.addTaskToList(task["name"], 5, 0);
-                this.addedTasksList.push(
-                    new Task(task.id, task["name"], task["text"], 0, 1, newElem)
-                );
+                this.addTaskToList(new Task(task["id"], task["name"], task["text"], task["difficulty"], 0, 1, 0));
             });
     
         } catch (error) {
@@ -43,20 +44,21 @@ export class TaskManager {
         }
     }
 
-    addTaskToList(taskLabel, taskDifficulty, deadline) {
+    addTaskToList(task) {
         const newElem = this.taskList.appendChild(this.taskListEntry.cloneNode(true));
-        newElem.getElementsByClassName('task-label')[0].innerText = taskLabel;
-        newElem.getElementsByClassName('task-difficulty')[0].innerText = `${taskDifficulty}`;
-        newElem.querySelector('.task-deadline').textContent = deadline;
+        newElem.getElementsByClassName('task-label')[0].innerText = task.name;
+        newElem.getElementsByClassName('task-difficulty')[0].innerText = `${task.difficulty}`;
+        newElem.querySelector('.task-deadline').textContent = task.deadline;
         newElem.classList.remove("hidden");
         newElem.addEventListener('click', (event) => {
-            const task = this.addedTasksList.find(task => task.dom_element === newElem);
-            this.taskEditor.show(task.name, task.text, task.deadline);
+            const foundTask = this.addedTasksList.find(searchTask => searchTask === task);
+            this.taskEditor.show(this.addTaskToList, foundTask.name, foundTask.text, foundTask.deadline);
         });
-        return newElem;
+        task.domElement = newElem;
+        this.addedTasksList.push(task);
     }
 
-    deleteTaskFromList(task){
+    deleteTaskFromList(task) {
         const taskIndex = this.addedTasksList.findIndex(searchTask => searchTask === task);
         task.domElement.remove();
         this.addedTasksList.splice(taskIndex, 1);
@@ -64,10 +66,13 @@ export class TaskManager {
 
     setTaskEditor(taskEditor) {
         this.taskEditor = taskEditor;
-        this.addTaskButton.onclick = function() { taskEditor.show() };
+        const lll = this;
+        this.addTaskButton.onclick = function() { 
+            taskEditor.show(lll);
+        };
     }
 
-    updateTaskInList(task){
+    updateTaskInList(task) {
         // TODO
     }
 }
