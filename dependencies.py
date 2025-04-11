@@ -4,6 +4,7 @@ from datetime import datetime
 import jwt
 from fastapi import HTTPException, Request
 from sqlmodel import select
+from starlette.status import HTTP_307_TEMPORARY_REDIRECT
 
 from database import DBSession
 from models.user import User
@@ -28,3 +29,10 @@ def logged_in_user(request: Request, db: DBSession):
     if datetime.now() >= datetime.fromtimestamp(token_data['until']):
         raise HTTPException(status_code=401, detail="Token expired")
     return user
+
+
+def redirect_login_user(request: Request, db: DBSession):
+    try:
+        logged_in_user(request, db)
+    except HTTPException:
+        raise HTTPException(status_code=HTTP_307_TEMPORARY_REDIRECT, headers={"Location": "/login"})
