@@ -12,6 +12,7 @@
         }
     } catch (error) {
         console.error('Ошибка сети:', error);
+        window.location.href = '/login';
     }
 }
 

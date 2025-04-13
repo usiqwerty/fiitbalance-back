@@ -50,3 +50,4 @@ def register(db: DBSession, response: Response, data: RegisterUser):
 @router.post('/logout')
 def logout(response: Response):
     response.delete_cookie(key="auth_token")
+    response.status_code = 204
