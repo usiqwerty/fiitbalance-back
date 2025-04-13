@@ -21,3 +21,12 @@ class TaskAdd(BaseModel):
     start: datetime.datetime
     end: datetime.datetime
     difficulty: int
+
+
+class TaskUpdate(BaseModel):
+    id: int
+    name: str
+    text: str
+    start: datetime.datetime
+    end: datetime.datetime
+    difficulty: int

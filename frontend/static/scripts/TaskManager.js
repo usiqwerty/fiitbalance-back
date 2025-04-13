@@ -53,10 +53,20 @@ export class TaskManager {
         newElem.classList.remove("hidden");
         newElem.addEventListener('click', (event) => {
             const foundTask = this.addedTasksList.find(searchTask => searchTask === task);
-            this.taskEditor.show(this.addTaskToList, foundTask.name, foundTask.text, foundTask.deadline);
+            this.taskEditor.show(this, foundTask.name, foundTask.text, foundTask.deadline, foundTask.id, true);
         });
         task.domElement = newElem;
         this.addedTasksList.push(task);
+    }
+
+    updateTaskInList(newTask) {
+        console.log(newTask.name);
+        const oldTask = this.addedTasksList.find(searchTask => searchTask.id === newTask.id);
+        const oldElem = oldTask.domElement;
+        newTask.domElement = oldElem;
+        oldElem.getElementsByClassName('task-label')[0].innerText = newTask.name;
+        oldElem.getElementsByClassName('task-difficulty')[0].innerText = `${newTask.difficulty}`;
+        oldTask.updateFields(newTask);
     }
 
     deleteTaskFromList(task) {
@@ -68,12 +78,8 @@ export class TaskManager {
     setTaskEditor(taskEditor) {
         this.taskEditor = taskEditor;
         const lll = this;
-        this.addTaskButton.onclick = function() { 
+        this.addTaskButton.onclick = function() {
             taskEditor.show(lll);
         };
-    }
-
-    updateTaskInList(task) {
-        // TODO
     }
 }

@@ -8,4 +8,13 @@ export class Task {
         this.difficulty = difficulty;
         this.domElement = domElement;
     }
+
+    updateFields(newTask){
+        this.name = newTask.name;
+        this.text = newTask.text;
+        this.start = newTask.start;
+        this.end = newTask.end;
+        this.difficulty = newTask.difficulty;
+        this.domElement = newTask.domElement;
+    }
 }
