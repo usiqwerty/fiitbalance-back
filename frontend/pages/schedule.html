@@ -3,6 +3,10 @@
 {% block title %}Schedule - fiitobalance{% endblock %}
 
 {% block content %}
+<div class="header-container">
+    <h3 class="label">fiitobalance</h3>
+    <button class="logout-button" onclick="logout()">Выйти</button>
+</div>
 <h3 class="label">fiitobalance</h3>
 <div class="centered-container">
     <div class="dates_tape margin-bottom-10pt">
@@ -70,5 +74,6 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="{{ url_for('static', path='/scripts/logout.js') }}"></script>
 <script type="module" src="{{ url_for('static', path='/scripts/schedule.js') }}"></script>
 {% endblock %}

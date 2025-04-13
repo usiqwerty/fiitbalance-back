@@ -312,3 +312,27 @@
     background: linear-gradient(to right, red, yellow, green);
     border-radius: 5px;
 }
+.logout-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 25px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.logout-button:hover {
+    background: #cc0000;
+}
+
+.header-container {
+    position: relative;
+    margin-bottom: 40px;
+}
