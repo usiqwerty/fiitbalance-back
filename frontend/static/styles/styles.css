@@ -312,3 +312,32 @@
     background: linear-gradient(to right, red, yellow, green);
     border-radius: 5px;
 }
+
+.icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+/* Стили для иконок */
+.icon-fire,
+.icon-palm {
+    font-size: 2rem;
+}
+
+/* Сообщение с ссылкой */
+.message {
+    font-size: 1.2rem;
+    margin-top: 30px;
+}
+
+.message a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.message a:hover {
+    text-decoration: underline;
+}

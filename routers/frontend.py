@@ -34,3 +34,7 @@ def login(request: Request):
 @front_app.get("/register")
 def register(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
+
+@front_app.get("/unauthorized")
+def register(request: Request):
+    return templates.TemplateResponse("unauthorized.html", {"request": request})

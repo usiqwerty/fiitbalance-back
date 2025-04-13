@@ -33,6 +33,6 @@ def logged_in_user(request: Request, db: DBSession):
 
 def redirect_login_user(request: Request, db: DBSession):
     try:
-        logged_in_user(request, db)
+        return logged_in_user(request, db)
     except HTTPException:
-        raise HTTPException(status_code=HTTP_307_TEMPORARY_REDIRECT, headers={"Location": "/login"})
+        raise HTTPException(status_code=HTTP_307_TEMPORARY_REDIRECT, headers={"Location": "/unauthorized"})
