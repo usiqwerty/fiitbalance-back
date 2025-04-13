@@ -7,7 +7,7 @@ export class TaskEditor {
         this.addTaskFinalButton = document.getElementById('add-task-final-button');
         this.taskTitleInput = document.getElementById('task-title-input');
         this.taskDescriptionArea = document.getElementById('task-description-area');
-        this.taskDeadlineInput = document.getElementById('task-deadline-input');
+        this.taskDateInput = document.getElementById('task-date-input');
         this.taskAddCard = document.getElementById('task-add-card');
         this.date = date;
 
@@ -16,7 +16,7 @@ export class TaskEditor {
         this.addTaskFinalButton.addEventListener('click', async (event) => {
             const title = this.taskTitleInput.value;
             const description = this.taskDescriptionArea.value;
-            const deadline = this.taskDeadlineInput.value;
+            const date = this.taskDateInput.value;
             let difficulty = 5;
 
             if (this.taskManager.isRest) {
@@ -33,7 +33,7 @@ export class TaskEditor {
                     body: JSON.stringify({
                         "name": title,
                         "text": description,
-                        "start": `${date_closure}T10:00:00`,
+                        "start": `${date}T10:00:00`,
                         "end": "2023-10-01T12:00:00",
                         "difficulty": difficulty
                     })
@@ -44,7 +44,10 @@ export class TaskEditor {
                     throw new Error(errorData.detail || 'Ошибка при создании задачи');
                 }
                 const createdTask = await response.json();
-                const newElem = this.taskManager.addTaskToList(new Task(createdTask.id, title, description, difficulty, 0, 1, 0));
+                if (date_closure == date)
+                {
+                    this.taskManager.addTaskToList(new Task(createdTask.id, title, description, difficulty, 0, 1, 0));
+                }
                 this.hide();
                 
             } catch (error) {
@@ -64,11 +67,14 @@ export class TaskEditor {
         this.taskAddBlock.classList.add("hidden");
     }
 
-    show(taskManager, title = '', description = '', deadline = '') {
+    show(taskManager, title = '', description = '', date = '') {
         this.taskManager = taskManager;
         this.taskTitleInput.value = title;
         this.taskDescriptionArea.innerText = description;
-        // this.taskDeadlineInput.value = deadline;
+        if (date == ''){
+            date = this.date;
+        }
+        this.taskDateInput.value = date;
         this.taskAddBlock.classList.remove("hidden");
     }
 }
