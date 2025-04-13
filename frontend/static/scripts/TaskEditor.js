@@ -2,13 +2,16 @@ import { Task } from './Task.js';
 
 
 export class TaskEditor {
-    constructor() {
+    constructor(date) {
         this.taskAddBlock = document.getElementById('task-add-block');
         this.addTaskFinalButton = document.getElementById('add-task-final-button');
         this.taskTitleInput = document.getElementById('task-title-input');
         this.taskDescriptionArea = document.getElementById('task-description-area');
         this.taskDeadlineInput = document.getElementById('task-deadline-input');
         this.taskAddCard = document.getElementById('task-add-card');
+        this.date = date;
+
+        const date_closure = this.date;
 
         this.addTaskFinalButton.addEventListener('click', async (event) => {
             const title = this.taskTitleInput.value;
@@ -30,7 +33,7 @@ export class TaskEditor {
                     body: JSON.stringify({
                         "name": title,
                         "text": description,
-                        "start": "2023-10-01T10:00:00",
+                        "start": `${date_closure}T10:00:00`,
                         "end": "2023-10-01T12:00:00",
                         "difficulty": difficulty
                     })

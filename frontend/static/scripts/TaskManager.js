@@ -2,7 +2,8 @@ import { Task } from './Task.js';
 
 
 export class TaskManager {
-    constructor(listElement, isRest=false) {
+    constructor(listElement, date, isRest=false) {
+        this.date = date;
         this.listElement = listElement;
         this.addedTasksList = [];
 
@@ -18,7 +19,7 @@ export class TaskManager {
 
     async loadTasks() {
         try {
-            const response = await fetch('/api/tasks/', {
+            const response = await fetch(`/api/tasks/for_date?date=${this.date}`, {
                 method: 'GET',
                 credentials: 'include'  
             });

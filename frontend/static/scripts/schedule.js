@@ -5,11 +5,15 @@ import { BalanceScales } from './BalanceScales.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const workManager = new TaskManager(document.getElementById('work-list-block'));
-    const taskEditor = new TaskEditor();
+    const queryString = window.location.search;
+    const params = new URLSearchParams(queryString);
+    const dateParam = params.get('date');
+
+    const workManager = new TaskManager(document.getElementById('work-list-block'), dateParam);
+    const taskEditor = new TaskEditor(dateParam);
     workManager.setTaskEditor(taskEditor);
 
-    const restManager = new TaskManager(document.getElementById('rest-list-block'), true);
+    const restManager = new TaskManager(document.getElementById('rest-list-block'), dateParam, true);
     restManager.setTaskEditor(taskEditor);
     
     
