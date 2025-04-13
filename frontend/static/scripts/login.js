@@ -3,12 +3,17 @@ const redirectUrl = "/schedule";
 
 
 function setErrorMessage(msg) {
-    if (msg === undefined) {
-        // спрятать ошибку
+    const errorBlock = document.getElementById('error-message');
+
+    if (!errorBlock) return;
+
+    if (!msg) {
+        errorBlock.classList.add('hidden');
         return;
     }
-    //TODO: писать ошибку на странице
-    alert(msg);
+
+    errorBlock.textContent = msg;
+    errorBlock.classList.remove('hidden');
 }
 
 function login() {

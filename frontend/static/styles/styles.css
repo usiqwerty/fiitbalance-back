@@ -336,3 +336,17 @@
     position: relative;
     margin-bottom: 40px;
 }
+.error-message {
+    background: #ffebee;
+    color: #c62828;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14pt;
+    border: 1px solid #ef9a9a;
+}
+
+.error-message.hidden {
+    display: none;
+}
