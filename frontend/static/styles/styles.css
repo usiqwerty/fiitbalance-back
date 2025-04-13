@@ -313,7 +313,7 @@
     border-radius: 5px;
 }
 .logout-button {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     padding: 10px 25px;
