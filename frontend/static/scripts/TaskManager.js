@@ -48,12 +48,12 @@ export class TaskManager {
     addTaskToList(task) {
         const newElem = this.taskList.appendChild(this.taskListEntry.cloneNode(true));
         newElem.getElementsByClassName('task-label')[0].innerText = task.name;
-        newElem.getElementsByClassName('task-difficulty')[0].innerText = `${task.difficulty}`;
+        newElem.getElementsByClassName('task-difficulty')[0].innerText = `${Math.abs(task.difficulty)}`;
         newElem.querySelector('.task-deadline').textContent = task.deadline;
         newElem.classList.remove("hidden");
         newElem.addEventListener('click', (event) => {
             const foundTask = this.addedTasksList.find(searchTask => searchTask === task);
-            this.taskEditor.show(this, foundTask.name, foundTask.text, foundTask.deadline, foundTask.id, true);
+            this.taskEditor.show(this, foundTask.name, foundTask.text, foundTask.deadline, foundTask.difficulty, foundTask.id, true);
         });
         task.domElement = newElem;
         this.addedTasksList.push(task);
@@ -65,7 +65,7 @@ export class TaskManager {
         const oldElem = oldTask.domElement;
         newTask.domElement = oldElem;
         oldElem.getElementsByClassName('task-label')[0].innerText = newTask.name;
-        oldElem.getElementsByClassName('task-difficulty')[0].innerText = `${newTask.difficulty}`;
+        oldElem.getElementsByClassName('task-difficulty')[0].innerText = `${Math.abs(newTask.difficulty)}`;
         oldTask.updateFields(newTask);
     }
 

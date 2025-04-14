@@ -96,7 +96,7 @@ export class TaskEditor {
         const title = this.taskTitleInput.value;
         const description = this.taskDescriptionArea.value;
         const date = this.taskDateInput.value;
-        let difficulty = 5;
+        let difficulty = this.difficulty;
     
         if (this.taskManager.isRest) {
             difficulty *= -1;
@@ -137,12 +137,14 @@ export class TaskEditor {
         this.taskAddBlock.classList.add("hidden");
     }
 
-    show(taskManager, title = '', description = '', date = '', taskId = null, isUpdate = false) {
+    show(taskManager, title = '', description = '', date = '', difficulty = 5, taskId = null, isUpdate = false) {
         this.isUpdate = isUpdate;
         this.taskId = taskId;
         this.taskManager = taskManager;
         this.taskTitleInput.value = title;
         this.taskDescriptionArea.innerText = description;
+        this.difficulty = Math.abs(difficulty);
+        this.counterLabel.textContent = `${this.difficulty}/10`;
         if (date == ''){
             date = this.date;
         }
