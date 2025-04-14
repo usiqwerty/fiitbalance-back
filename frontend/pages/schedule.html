@@ -3,7 +3,6 @@
 {% block title %}Schedule - fiitobalance{% endblock %}
 
 {% block content %}
-<h3 class="label">fiitobalance</h3>
 <div class="centered-container">
     <div class="dates_tape margin-bottom-10pt">
         <p class="tape_date"><a href="/">4th Of March</a></p>
@@ -46,21 +45,25 @@
 
     <div class="overlay-background hidden" id="task-add-block">
         <div class="add-task-card" id="task-add-card">
-            <input class="input_field_1 jomhuria-regular difficulty-input-border-width task-label-input" id="task-title-input" type="text" placeholder="task name">
-            <textarea class="input_field_2 jomhuria-regular difficulty-input-border-width" type="text" placeholder="description" id="task-description-area"></textarea>
+            <input class="input_field_1 geologica-regular difficulty-input-border-width task-label-input" id="task-title-input" type="text" placeholder="task name">
+            <textarea class="input_field_2 geologica-regular difficulty-input-border-width" type="text" placeholder="description" id="task-description-area"></textarea>
             <input type="date"
-                   class="input_field_1 jomhuria-regular difficulty-input-border-width"
-                   id="task-deadline-input"
+                   class="input_field_1 geologica-regular difficulty-input-border-width"
+                   id="task-date-input"
                    required
                    min="<?= date('Y-m-d') ?>">
             <div class="difficulty-block">
                 <div class="difficulty-buttons">
-                    <img class="dif-plus" src="../static/resources/difficulty plus.svg" alt="plus">
+                    <button id="difficulty-button-plus">
+                        <img class="dif-plus" src="../static/resources/difficulty plus.svg" alt="plus">
+                    </button>
+                    <button id="difficulty-button-minus">
                     <img class="dif-plus" src="../static/resources/difficulty minus.svg" alt="plus">
+                    </button>
                 </div>
                 <div class="difficulty-label-block">
                     <p class="difficulty-label">difficulty</p>
-                    <p class="difficulty-counter-label">5/10</p>
+                    <p class="difficulty-counter-label" id="difficulty-counter">5/10</p>
                 </div>
             </div>
             <button class="sign_up_button" id="add-task-final-button">add task</button>

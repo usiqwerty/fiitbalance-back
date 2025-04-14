@@ -7,7 +7,7 @@ from sqlmodel import select
 
 from database import DBSession
 from dependencies import logged_in_user
-from models.task import Task, TaskAdd
+from models.task import Task, TaskAdd, TaskUpdate
 from models.user import User
 
 router = APIRouter(prefix='/tasks')
@@ -26,6 +26,26 @@ def get_tasks_for_day(db: DBSession, user: Annotated[User, Depends(logged_in_use
     tasks = db.exec(query)
     return tasks.all()
 
+@router.post("/update")
+def update_task(db: DBSession,user: Annotated[User, Depends(logged_in_user)], task: TaskUpdate):
+    sql_task = db.get(Task, task.id)
+    
+    if not sql_task:
+        raise HTTPException(status_code=404, detail="Задача не найдена")
+    
+    if sql_task.user_id != user.id:
+        raise HTTPException(status_code=403, detail="У вас нет прав на изменение этой задачи")
+    
+    sql_task.name = task.name
+    sql_task.text = task.text
+    sql_task.start = task.start.date()
+    sql_task.end = task.end.date()
+    sql_task.difficulty = task.difficulty
+    
+    db.commit()
+    db.refresh(sql_task)
+    
+    return {"message": "Задача успешно обновлена", "task": sql_task}
 
 @router.delete('/delete_task')
 def delete_task(db: DBSession, user: Annotated[User, Depends(logged_in_user)], task_id: int):

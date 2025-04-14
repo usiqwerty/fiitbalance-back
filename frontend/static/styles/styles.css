@@ -4,7 +4,7 @@
 }
 
 .label {
-    font-family: 'jsMath-cmbx10', sans-serif;
+    font-family: 'Geologica', sans-serif;
     font-weight: bold;
     text-align: center;
     font-size: 30pt;
@@ -18,10 +18,11 @@
     border: 2pt solid black;
     border-radius: 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding-top: 5pt;
-    font-size: 40pt;
+    padding-top: 6pt;
+    padding-bottom: 4pt;
+    font-size: 20pt;
     width: 300pt;
-    font-family: 'Jomhuria', sans-serif;
+    font-family: 'Geologica', sans-serif;
     margin: 5pt;
     text-align: center;
 }
@@ -36,10 +37,10 @@
     resize: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding-top: 5pt;
-    font-size: 40pt;
+    font-size: 20pt;
     width: 300pt;
     height: 130pt;
-    font-family: 'Jomhuria', sans-serif;
+    font-family: 'Geologica', sans-serif;
     margin: 5pt;
     margin-bottom: 10pt;
 }
@@ -63,7 +64,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 5pt;
     font-size: 20pt;
-    font-family: 'Inika', serif;
+    font-family: 'Geologica', serif;
     font-weight: bold;
     margin: 30pt;
     margin-bottom: 15pt;
@@ -86,15 +87,15 @@
 }
 
 
-.jomhuria-regular {
-    font-family: "Jomhuria", serif;
+.geologica-regular {
+    font-family: "Geologica", serif;
     font-weight: 400;
     font-style: normal;
 }
 
 .no_account {
     font-size: 15pt;
-    font-family: "Inika", serif;
+    font-family: "Geologica", serif;
 }
 
 .dates_tape {
@@ -103,7 +104,7 @@
 }
 
 .tape_date {
-    font-family: 'Inika', serif;
+    font-family: 'Geologica', serif;
     font-size: 20pt;
     margin: 20pt;
     margin-top: 0pt;
@@ -127,7 +128,7 @@
 .plans-add-block {
     display: flex;
     flex-direction: column;
-    font-family: 'jsMath-cmbx10', sans-serif;
+    font-family: 'Geologica', sans-serif;
     font-size: 15pt;
     align-items: center;
     margin-right: 30pt;
@@ -153,8 +154,8 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    font-family: 'Jomhuria', serif;
-    font-size: 30pt;
+    font-family: 'Geologica', serif;
+    font-size: 20pt;
     border: 2pt solid black;
     margin: 10pt;
     margin-top: 0pt;
@@ -174,14 +175,14 @@
 
 .task-difficulty {
     margin: 0;
-    font-family: 'Jomhuria', serif;
+    font-family: 'Geologica', serif;
     height: 27pt;
 }
 .task-deadline {
     position: absolute;
     bottom: 5pt;
     right: 10pt;
-    font-family: 'Jomhuria', serif;
+    font-family: 'Geologica', serif;
     font-size: 20pt;
     color: rgba(255, 255, 255, 0.8);
     margin: 0;
@@ -235,10 +236,10 @@
 }
 
 .difficulty-label-block {
-    font-size: 40pt;
+    font-size: 25pt;
     letter-spacing: 1pt;
     font-weight: bold;
-    font-family: 'Jomhuria', serif;
+    font-family: 'Geologica', serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -248,7 +249,7 @@
 
 .difficulty-counter-label {
     margin: 0pt;
-    font-size: 60pt;
+    font-size: 45pt;
 }
 
 .difficulty-label {
@@ -272,12 +273,13 @@
 .balance-scales {
     -webkit-appearance: none;
     appearance: none;
-    width: 450pt;
+    width: 500pt;
     height: 15px;
     background: linear-gradient(to right, red, yellow, green);
     outline: none;
     cursor: pointer;
-    margin-bottom: 10pt;
+    margin-bottom: 30pt;
+    margin-top: 10pt;
 }
 
 .balance-scales::-webkit-slider-thumb {
