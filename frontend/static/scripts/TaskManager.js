@@ -5,9 +5,9 @@ export class TaskManager {
     constructor(listElement, date, isRest=false) {
         this.date = date;
         this.listElement = listElement;
-        this.addedTasksList = [];
+        this.addedTasksList = [];   
 
-        this.isRest = isRest;
+        this.isRest = isRest;// true для отдыха, false для работы
         this.taskList = this.listElement.querySelector('.task-list')
         this.taskListEntry = this.taskList.querySelector('.task-entry-samlpe')
 

@@ -343,3 +343,44 @@
 .message a:hover {
     text-decoration: underline;
 }
+
+.logout-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 25px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+.header-container {
+    margin-bottom: 60px;
+}
+.logout-button:hover {
+    background: #cc0000;
+}
+
+.header-container {
+    position: relative;
+    margin-bottom: 40px;
+}
+.error-message {
+    background: #ffebee;
+    color: #c62828;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14pt;
+    border: 1px solid #ef9a9a;
+}
+
+.error-message.hidden {
+    display: none;
+}

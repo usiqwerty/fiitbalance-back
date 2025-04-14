@@ -5,6 +5,7 @@
 {% block label_style %}label_gap_login{% endblock %}
 
 {% block content %}
+
 <input class="input_field_1 jomhuria-regular"
        type="text"
        placeholder="login"
@@ -13,6 +14,7 @@
        type="password"
        placeholder="password"
        id="password">
+<div class="error-message hidden" id="error-message"></div>
 <button class="sign_up_button" id="login-btn">sign in</button>
 <p class="no_account">No account yet? <a href="{{ url_for('register') }}">Sign up!</a></p>
 {% endblock %}

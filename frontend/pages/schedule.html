@@ -3,6 +3,9 @@
 {% block title %}Schedule - fiitobalance{% endblock %}
 
 {% block content %}
+<div class="header-container">
+    <button class="logout-button">Выйти</button>
+</div>
 <div class="centered-container">
     <div class="dates_tape margin-bottom-10pt">
         <p class="tape_date"><a href="/">4th Of March</a></p>
@@ -73,5 +76,6 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="{{ url_for('static', path='/scripts/logout.js') }}"></script>
 <script type="module" src="{{ url_for('static', path='/scripts/schedule.js') }}"></script>
 {% endblock %}

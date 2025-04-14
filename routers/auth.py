@@ -47,3 +47,9 @@ def register(db: DBSession, response: Response, data: RegisterUser):
 
     token, expires = create_auth_token(user)
     response.set_cookie(key="auth_token", value=token, expires=expires)
+
+
+@router.post('/logout')
+def logout(response: Response):
+    response.delete_cookie(key="auth_token")
+    response.status_code = 200
