@@ -13,6 +13,7 @@ class Task(SQLModel, table=True):
     start: datetime.date
     end: datetime.date
     difficulty: int
+    completed: int
 
 
 class TaskAdd(BaseModel):

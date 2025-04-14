@@ -28,7 +28,7 @@ def get_tasks_for_day(db: DBSession, user: Annotated[User, Depends(logged_in_use
 
 
 @router.delete('/delete_task')
-def get_tasks(db: DBSession, user: Annotated[User, Depends(logged_in_user)], task_id: int):
+def delete_task(db: DBSession, user: Annotated[User, Depends(logged_in_user)], task_id: int):
     query = select(Task).where(Task.user_id == user.id, Task.id == task_id)
     task = db.exec(query).first()
     if task is None:
@@ -42,6 +42,16 @@ def add_task(db: DBSession, user: Annotated[User, Depends(logged_in_user)], task
     sql_task = Task(user_id=user.id, name=task.name, text=task.text,
                     start=task.start.date(), end=task.end.date(), difficulty=task.difficulty)
     db.add(sql_task)
-    
+
     db.commit()
     return {"id": sql_task.id}
+
+
+@router.post("/complete")
+def complete_task(db: DBSession, user: Annotated[User, Depends(logged_in_user)], task_id: int, completed: bool = True):
+    query = select(Task).where(Task.id == task_id, Task.user_id == user.id)
+    task = db.exec(query).first()
+    if task is None:
+        raise HTTPException(status_code=404, detail="Task not found")
+    task.completed = completed
+    db.commit()
