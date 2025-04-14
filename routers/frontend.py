@@ -1,8 +1,9 @@
-from datetime import datetime
+import datetime
 from typing import Annotated
 
 from fastapi import Request, FastAPI, Depends
 from fastapi.templating import Jinja2Templates
+from starlette.responses import RedirectResponse
 from starlette.staticfiles import StaticFiles
 
 from dependencies import redirect_login_user
@@ -17,12 +18,16 @@ def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 @front_app.get("/schedule")
-def schedule(request: Request, user: Annotated[User, Depends(redirect_login_user)]):
+def schedule(request: Request, user: Annotated[User, Depends(redirect_login_user)], date: datetime.date = None):
+    if date is None:
+        current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+        return RedirectResponse(f"/schedule?date={current_date}")
+
     return templates.TemplateResponse(
         "schedule.html",
         {
             "request": request,
-            "current_date": datetime.now().strftime("%Y-%m-%d"),
+            "current_date": date,
             "balance": 0.75
         }
     )
