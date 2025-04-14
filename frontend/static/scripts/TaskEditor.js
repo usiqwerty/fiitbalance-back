@@ -10,6 +10,25 @@ export class TaskEditor {
         this.taskDateInput = document.getElementById('task-date-input');
         this.taskAddCard = document.getElementById('task-add-card');
         this.date = date;
+        this.difficulty = 5;
+        this.counterLabel = document.getElementById('difficulty-counter');
+        this.plusBtn = document.getElementById('difficulty-button-plus');
+        this.minusBtn = document.getElementById('difficulty-button-minus');
+
+
+        this.plusBtn.addEventListener('click', () => {
+            if (this.difficulty < 10){
+                this.difficulty++;
+                this.counterLabel.textContent = `${this.difficulty}/10`;
+            }
+        });
+
+        this.minusBtn.addEventListener('click', () => {
+            if (this.difficulty > 1){
+                this.difficulty--;
+                this.counterLabel.textContent = `${this.difficulty}/10`;
+            }
+        });
         
         this.addTaskFinalButton.addEventListener('click', this.handleAddTaskButtonClick.bind(this));
 
@@ -33,7 +52,7 @@ export class TaskEditor {
         const title = this.taskTitleInput.value;
         const description = this.taskDescriptionArea.value;
         const date = this.taskDateInput.value;
-        let difficulty = 5;
+        let difficulty = this.difficulty;
 
         console.log(this);
     

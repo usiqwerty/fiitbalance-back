@@ -54,12 +54,16 @@
                    min="<?= date('Y-m-d') ?>">
             <div class="difficulty-block">
                 <div class="difficulty-buttons">
-                    <img class="dif-plus" src="../static/resources/difficulty plus.svg" alt="plus">
+                    <button id="difficulty-button-plus">
+                        <img class="dif-plus" src="../static/resources/difficulty plus.svg" alt="plus">
+                    </button>
+                    <button id="difficulty-button-minus">
                     <img class="dif-plus" src="../static/resources/difficulty minus.svg" alt="plus">
+                    </button>
                 </div>
                 <div class="difficulty-label-block">
                     <p class="difficulty-label">difficulty</p>
-                    <p class="difficulty-counter-label">5/10</p>
+                    <p class="difficulty-counter-label" id="difficulty-counter">5/10</p>
                 </div>
             </div>
             <button class="sign_up_button" id="add-task-final-button">add task</button>
