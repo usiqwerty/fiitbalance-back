@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(queryString);
     const dateParam = params.get('date');
 
-    const workManager = new TaskManager(document.getElementById('work-list-block'), dateParam);
+    const workManager = new TaskManager(document.getElementById('work-list-block'), dateParam, false);
     const taskEditor = new TaskEditor(dateParam);
     workManager.setTaskEditor(taskEditor);
 

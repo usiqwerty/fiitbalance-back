@@ -75,3 +75,26 @@ def complete_task(db: DBSession, user: Annotated[User, Depends(logged_in_user)],
         raise HTTPException(status_code=404, detail="Task not found")
     task.completed = completed
     db.commit()
+
+
+@router.get("/for_week")
+def get_tasks_for_week(db: DBSession, user: Annotated[User, Depends(logged_in_user)], date: datetime.date):
+    # Calculate the start and end dates of the week (Monday to Sunday)
+    date_obj = datetime.datetime.strptime(str(date), "%Y-%m-%d")
+    day_of_week = date_obj.weekday()  # 0 = Monday, 6 = Sunday
+
+    # Calculate Monday (start of week)
+    monday = date_obj - datetime.timedelta(days=day_of_week)
+
+    # Calculate Sunday (end of week)
+    sunday = monday + datetime.timedelta(days=6)
+
+    # Query tasks for the entire week
+    query = select(Task).where(
+        Task.user_id == user.id,
+        Task.start >= monday.date(),
+        Task.start <= sunday.date()
+    )
+
+    tasks = db.exec(query)
+    return tasks.all()
