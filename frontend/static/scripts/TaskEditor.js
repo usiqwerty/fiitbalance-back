@@ -14,6 +14,7 @@ export class TaskEditor {
         this.counterLabel = document.getElementById('difficulty-counter');
         this.plusBtn = document.getElementById('difficulty-button-plus');
         this.minusBtn = document.getElementById('difficulty-button-minus');
+        this.deleteTaskBtn = document.getElementById('delete-task-final-button');
 
 
         this.plusBtn.addEventListener('click', () => {
@@ -31,6 +32,10 @@ export class TaskEditor {
         });
         
         this.addTaskFinalButton.addEventListener('click', this.handleAddTaskButtonClick.bind(this));
+
+        this.deleteTaskBtn.addEventListener('click', () => {
+            console.log("Delete task:", this.taskId);
+        })
 
         this.taskAddBlock.addEventListener('click', (event) => {
             if (!this.taskAddCard.contains(event.target)) {
@@ -139,10 +144,16 @@ export class TaskEditor {
 
     show(taskManager, title = '', description = '', date = '', difficulty = 5, taskId = null, isUpdate = false) {
         this.isUpdate = isUpdate;
+        if (isUpdate){
+            this.deleteTaskBtn.classList.remove("hidden");
+        }
+        else {
+            this.deleteTaskBtn.classList.add("hidden");
+        }
         this.taskId = taskId;
         this.taskManager = taskManager;
         this.taskTitleInput.value = title;
-        this.taskDescriptionArea.innerText = description;
+        this.taskDescriptionArea.value = description;
         this.difficulty = Math.abs(difficulty);
         this.counterLabel.textContent = `${this.difficulty}/10`;
         if (date == ''){

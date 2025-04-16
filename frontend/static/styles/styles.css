@@ -384,3 +384,17 @@
 .error-message.hidden {
     display: none;
 }
+
+.central-date {
+    border: none;
+    box-shadow: none;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 15pt;
+    width: 150pt;
+}
+
+.task-edit-buttons-box {
+    display: flex;
+}

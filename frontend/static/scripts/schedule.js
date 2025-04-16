@@ -34,3 +34,11 @@ TaskManager.prototype.deleteTaskFromList = function(task) {
     updateGlobalBalance();
 };
 });
+
+const dateInput = document.getElementById('look-date-input');
+
+    dateInput.addEventListener('input', function(event) {
+    const selectedDate = event.target.value;
+    const redirectUrl = `/schedule?date=${selectedDate}`;
+    window.location.href = redirectUrl;
+});
