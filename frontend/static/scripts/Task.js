@@ -1,5 +1,5 @@
 export class Task {
-    constructor(id, name, text, difficulty, start, end, domElement) {
+    constructor(id, name, text, difficulty, start, end, domElement, completed = false) {
         this.id = id;
         this.name = name;
         this.text = text;
@@ -7,6 +7,7 @@ export class Task {
         this.end = end;
         this.difficulty = difficulty;
         this.domElement = domElement;
+        this.completed = completed;
     }
 
     updateFields(newTask){

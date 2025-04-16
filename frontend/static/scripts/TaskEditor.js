@@ -80,7 +80,7 @@ export class TaskEditor {
         console.log(this);
     
         if (this.taskManager.isRest) {
-            difficulty *= -1;
+            difficulty = -Math.abs(difficulty);
         }
     
         try {

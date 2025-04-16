@@ -37,7 +37,8 @@ export class TaskManager {
                 tasks = tasks.filter(task => task["difficulty"] < 0);
             }
             tasks.forEach(task => {
-                this.addTaskToList(new Task(task["id"], task["name"], task["text"], task["difficulty"], 0, 1, 0));
+                let newTask = new Task(task["id"], task["name"], task["text"], task["difficulty"], 0, 1, 0, task["completed"])
+                this.addTaskToList(newTask);
             });
     
         } catch (error) {
@@ -51,9 +52,39 @@ export class TaskManager {
         newElem.getElementsByClassName('task-difficulty')[0].innerText = `${Math.abs(task.difficulty)}`;
         newElem.querySelector('.task-deadline').textContent = task.deadline;
         newElem.classList.remove("hidden");
-        newElem.addEventListener('click', (event) => {
+        newElem.getElementsByClassName('task-circle')[0].src = task.completed ? '../static/resources/relax_elipse.svg' 
+                                                                                : '../static/resources/Ellipse 1.svg';
+        newElem.addEventListener('click', async (event) => {
             const foundTask = this.addedTasksList.find(searchTask => searchTask === task);
-            this.taskEditor.show(this, foundTask.name, foundTask.text, foundTask.deadline, foundTask.difficulty, foundTask.id, true);
+            if (event.target.classList.contains('task-circle')) {
+                const circle = event.target;
+                circle.style.opacity = 0.5;
+
+                try {
+                    const response = await fetch(`/api/tasks/complete?task_id=${foundTask.id}&completed=${!foundTask.completed}`, {
+                        method: 'POST',
+                        headers: {
+                        }
+                    });
+
+                    console.log('Статус ответа:', response.status);
+                    if (circle.src.includes('Ellipse') && foundTask.completed === false) {
+                        circle.src = '../static/resources/relax_elipse.svg';
+                        foundTask.completed = true;
+                    } else {
+                        circle.src = '../static/resources/Ellipse 1.svg';
+                        foundTask.completed = false;
+                    }
+                } catch (error) {
+                    console.error('Ошибка:', error);
+                    alert('Не удалось обновить статус задачи');
+                }
+                finally{
+                    circle.style.opacity = 1;
+                }
+            } else {
+                this.taskEditor.show(this, foundTask.name, foundTask.text, foundTask.deadline, foundTask.difficulty, foundTask.id, true);
+            }
         });
         task.domElement = newElem;
         this.addedTasksList.push(task);
