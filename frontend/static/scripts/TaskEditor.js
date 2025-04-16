@@ -34,7 +34,10 @@ export class TaskEditor {
         this.addTaskFinalButton.addEventListener('click', this.handleAddTaskButtonClick.bind(this));
 
         this.deleteTaskBtn.addEventListener('click', () => {
-            console.log("Delete task:", this.taskId);
+            const isConfirmed = confirm('Please, confirm task delete');
+            if (isConfirmed) {
+                this.deleteTask();
+            }
         })
 
         this.taskAddBlock.addEventListener('click', (event) => {
@@ -50,6 +53,21 @@ export class TaskEditor {
         }
         else {
             this.updateTask(event);
+        }
+    }
+
+    async deleteTask() {
+        const response = await fetch(`/api/tasks/delete_task?task_id=${this.taskId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.detail || 'Ошибка при удалении задачи');
+        }
+        else{
+            this.taskManager.deleteTaskFromList(this.taskId);
+            this.hide();
         }
     }
 

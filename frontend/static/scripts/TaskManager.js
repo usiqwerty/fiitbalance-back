@@ -69,8 +69,8 @@ export class TaskManager {
         oldTask.updateFields(newTask);
     }
 
-    deleteTaskFromList(task) {
-        const taskIndex = this.addedTasksList.findIndex(searchTask => searchTask === task);
+    deleteTaskFromList(taskIndex) {
+        const task = this.addedTasksList.find(searchTask => searchTask.id === taskIndex);
         task.domElement.remove();
         this.addedTasksList.splice(taskIndex, 1);
     }

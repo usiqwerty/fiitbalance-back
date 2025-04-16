@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         balanceScales.updateBalance(allTasks);
     }
     const originalAddTask = TaskManager.prototype.addTaskToList;
+
 TaskManager.prototype.addTaskToList = function(task) {
     originalAddTask.call(this, task);
     updateGlobalBalance();
@@ -36,7 +37,6 @@ TaskManager.prototype.deleteTaskFromList = function(task) {
 });
 
 const dateInput = document.getElementById('look-date-input');
-
     dateInput.addEventListener('input', function(event) {
     const selectedDate = event.target.value;
     const redirectUrl = `/schedule?date=${selectedDate}`;
