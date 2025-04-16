@@ -42,7 +42,6 @@ function login() {
 }
 
 function register() {
-    const name = document.getElementById('name').value;
     const login = document.getElementById('login').value;
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('password-confirm').value;
@@ -51,7 +50,7 @@ function register() {
         return;
     }
 
-    const formData = {name: name, email: login, password: password};
+    const formData = {email: login, password: password};
     const requestOptions = {
         method: "POST",
         headers: {
