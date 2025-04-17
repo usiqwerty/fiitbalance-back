@@ -6,7 +6,9 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
+from database import DBSession
 from dependencies import redirect_login_user
+from models.analytics import StatViews
 from models.user import User
 from routers.tasks import router as tasks_router
 
@@ -54,7 +56,7 @@ def unauthorized(request: Request):
 
 
 @front_app.get("/weekStat")
-def week_stat(request: Request, user: Annotated[User, Depends(redirect_login_user)], date: datetime.date = None):
+def week_stat(db: DBSession, request: Request, user: Annotated[User, Depends(redirect_login_user)], date: datetime.date = None):
     if date is None:
         current_date = datetime.datetime.now().strftime("%Y-%m-%d")
         return RedirectResponse(f"/weekStat?date={current_date}")
@@ -68,6 +70,12 @@ def week_stat(request: Request, user: Annotated[User, Depends(redirect_login_use
 
     monday_formatted = format_date(monday)
     sunday_formatted = format_date(sunday)
+
+    db.add(StatViews(
+        date_viewed=datetime.datetime.now().date(),
+        user_id=user.id
+    ))
+    db.commit()
 
     return templates.TemplateResponse(
         "weekStat.html",
