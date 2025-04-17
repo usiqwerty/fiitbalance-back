@@ -3,8 +3,8 @@ from typing import Annotated
 
 from fastapi import Request, FastAPI, Depends
 from fastapi.templating import Jinja2Templates
-from starlette.responses import RedirectResponse
-from starlette.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
+from fastapi.staticfiles import StaticFiles
 
 from dependencies import redirect_login_user
 from models.user import User
@@ -18,7 +18,8 @@ front_app.include_router(tasks_router)
 
 @front_app.get("/")
 def index(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+    return RedirectResponse(f"/schedule?date={current_date}")
 
 
 @front_app.get("/schedule")
