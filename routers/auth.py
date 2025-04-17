@@ -41,7 +41,7 @@ def register(db: DBSession, response: Response, data: RegisterUser):
         raise HTTPException(status_code=401, detail="Provided email is already in use")
 
     hashed_password = sha256(data.password.encode()).hexdigest()
-    user = User(name=data.name, email=data.email, password=hashed_password)
+    user = User(email=data.email, password=hashed_password)
     db.add(user)
     db.commit()
 
