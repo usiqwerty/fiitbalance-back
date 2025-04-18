@@ -34,6 +34,9 @@ def index(request: Request):
 
 @front_app.get("/schedule")
 def schedule(request: Request, user: Annotated[User, Depends(redirect_login_user)], date: str = None):
+    if date is None:
+        current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+        return RedirectResponse(f"/schedule?date={current_date}")
     current_date = datetime.datetime.now().date() if not date else datetime.datetime.strptime(date, "%Y-%m-%d").date()
     prev_date = current_date - datetime.timedelta(days=1)
     next_date = current_date + datetime.timedelta(days=1)
