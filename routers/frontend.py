@@ -17,18 +17,20 @@ front_app.mount("/static", StaticFiles(directory="frontend/static"), name="stati
 def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+
 @front_app.get("/schedule")
-def schedule(request: Request, user: Annotated[User, Depends(redirect_login_user)], date: datetime.date = None):
-    if date is None:
-        current_date = datetime.datetime.now().strftime("%Y-%m-%d")
-        return RedirectResponse(f"/schedule?date={current_date}")
+def schedule(request: Request, date: str = None):
+    current_date = datetime.datetime.now().date() if not date else datetime.datetime.strptime(date, "%Y-%m-%d").date()
+    prev_date = current_date - datetime.timedelta(days=1)
+    next_date = current_date + datetime.timedelta(days=1)
 
     return templates.TemplateResponse(
         "schedule.html",
         {
             "request": request,
-            "current_date": date,
-            "balance": 0.75
+            "current_date": current_date.strftime("%Y-%m-%d"),
+            "prev_date": prev_date.strftime("%Y-%m-%d"),
+            "next_date": next_date.strftime("%Y-%m-%d"),
         }
     )
 

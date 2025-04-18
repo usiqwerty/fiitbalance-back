@@ -2,35 +2,61 @@ import { Task } from './Task.js';
 import { TaskManager } from './TaskManager.js';
 import { TaskEditor } from './TaskEditor.js';
 import { BalanceScales } from './BalanceScales.js';
-
+import { DateManager } from './DateManager.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const queryString = window.location.search;
-    const params = new URLSearchParams(queryString);
-    const dateParam = params.get('date');
 
-    const workManager = new TaskManager(document.getElementById('work-list-block'), dateParam);
-    const taskEditor = new TaskEditor(dateParam);
+    const dateManager = new DateManager();
+    dateManager.onDateChange(() => {
+        workManager.loadTasks();
+        restManager.loadTasks();
+        updateGlobalBalance();
+    });
+    dateManager.initDateNavigation();
+
+    const workManager = new TaskManager(
+        document.getElementById('work-list-block'),
+        dateManager.apiDate
+    );
+    
+    const restManager = new TaskManager(
+        document.getElementById('rest-list-block'),
+        dateManager.apiDate,
+        true
+    );
+
+    const taskEditor = new TaskEditor(dateManager.apiDate);
     workManager.setTaskEditor(taskEditor);
-
-    const restManager = new TaskManager(document.getElementById('rest-list-block'), dateParam, true);
     restManager.setTaskEditor(taskEditor);
-    
-    
-    const balanceScales = new BalanceScales("#balance-scales");
-    function updateGlobalBalance() {
-        const allTasks = [...workManager.addedTasksList, ...restManager.addedTasksList];
-        balanceScales.updateBalance(allTasks);
-    }
-    const originalAddTask = TaskManager.prototype.addTaskToList;
-TaskManager.prototype.addTaskToList = function(task) {
-    originalAddTask.call(this, task);
-    updateGlobalBalance();
-};
 
-const originalDeleteTask = TaskManager.prototype.deleteTaskFromList;
-TaskManager.prototype.deleteTaskFromList = function(task) {
-    originalDeleteTask.call(this, task);
-    updateGlobalBalance();
-};
+
+    const balanceScales = new BalanceScales("#balance-scales");
+    
+
+    const updateGlobalBalance = () => {
+        balanceScales.updateBalance([
+            ...workManager.addedTasksList,
+            ...restManager.addedTasksList
+        ]);
+    };
+
+
+    const originalAddTask = TaskManager.prototype.addTaskToList;
+    TaskManager.prototype.addTaskToList = function(task) {
+        originalAddTask.call(this, task);
+        updateGlobalBalance();
+    };
+
+    const originalDeleteTask = TaskManager.prototype.deleteTaskFromList;
+    TaskManager.prototype.deleteTaskFromList = function(task) {
+        originalDeleteTask.call(this, task);
+        updateGlobalBalance();
+    };
+
+
+    window.addEventListener('popstate', () => {
+        dateManager._currentDate = dateManager._parseUrlDate();
+        workManager.loadTasks();
+        restManager.loadTasks();
+    });
 });

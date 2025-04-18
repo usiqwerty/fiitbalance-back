@@ -8,11 +8,15 @@
 </div>
 <div class="centered-container">
     <div class="dates_tape margin-bottom-10pt">
-        <p class="tape_date"><a href="/">4th Of March</a></p>
+        <p class="tape_date">
+            <a href="#" id="prev-date">{{ formatted_prev_date }}</a>
+        </p>
         <img class="tape_date" src="{{ url_for('static', path='/resources/Arrow 2.svg') }}" alt="SVG Image">
-        <p class="tape_date">{{ current_date }}</p>
+        <p class="tape_date" id="current-date">{{ formatted_current_date }}</p>
         <img class="tape_date" src="{{ url_for('static', path='/resources/Arrow 1.svg') }}" alt="SVG Image">
-        <p class="tape_date"><a href="/">6th Of March</a></p>
+        <p class="tape_date">
+            <a href="#" id="next-date">{{ formatted_next_date }}</a>
+        </p>
     </div>
     <input type="range" id="balance-scales" class="balance-scales" name="volume" min="0" max="450" disabled/>
 
@@ -37,7 +41,7 @@
             <img class="task-plus" src="../static/resources/rest plus.svg" alt="plus">
         </div>
         <div class="task-list">
-            <div class="task-note hidden task-entry-samlpe">
+            <div class="task-note relax-note hidden task-entry-samlpe">
                 <img class="task-circle" src="../static/resources/Ellipse 1.svg" alt="plus">
                 <p class="task-label">working</p>
                 <p class="task-difficulty">9</p>
