@@ -29,7 +29,13 @@ export class TaskManager {
             }
     
             let tasks = await response.json();
-            tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+            tasks.sort((a, b) => {
+                if (a.completed !== b.completed) {
+                    return a.completed - b.completed; // Сначала идут невыполненные, а выполненные улетают в конец
+                }
+                return new Date(a.deadline) - new Date(b.deadline);
+            });
+
             if (!this.isRest){
                 tasks = tasks.filter(task => task["difficulty"] > 0);
             }
@@ -52,8 +58,18 @@ export class TaskManager {
         newElem.getElementsByClassName('task-difficulty')[0].innerText = `${Math.abs(task.difficulty)}`;
         newElem.querySelector('.task-deadline').textContent = task.deadline;
         newElem.classList.remove("hidden");
-        newElem.getElementsByClassName('task-circle')[0].src = task.completed ? '../static/resources/relax_elipse.svg' 
-                                                                                : '../static/resources/Ellipse 1.svg';
+        newElem.getElementsByClassName('task-circle')[0].src = task.completed && task.difficulty < 0
+                                                                                ? '../static/resources/relax_ellipse.svg'
+                                                                                : task.completed && task.difficulty > 0
+                                                                                    ? '../static/resources/work_ellipse.svg'
+                                                                                    : '../static/resources/Ellipse 1.svg';
+
+        if (task.completed) {
+            newElem.classList.add('task-completed');
+        } else {
+            newElem.classList.remove('task-completed');
+        }
+
         newElem.addEventListener('click', async (event) => {
             const foundTask = this.addedTasksList.find(searchTask => searchTask === task);
             if (event.target.classList.contains('task-circle')) {
@@ -69,11 +85,17 @@ export class TaskManager {
 
                     console.log('Статус ответа:', response.status);
                     if (circle.src.includes('Ellipse') && foundTask.completed === false) {
-                        circle.src = '../static/resources/relax_elipse.svg';
                         foundTask.completed = true;
+                        newElem.classList.add('task-completed');
+                        if (foundTask.difficulty > 0){
+                            circle.src = '../static/resources/work_ellipse.svg';
+                        } else{
+                            circle.src = '../static/resources/relax_ellipse.svg';
+                        }
                     } else {
                         circle.src = '../static/resources/Ellipse 1.svg';
                         foundTask.completed = false;
+                        newElem.classList.remove('task-completed');
                     }
                 } catch (error) {
                     console.error('Ошибка:', error);
@@ -98,6 +120,13 @@ export class TaskManager {
         oldElem.getElementsByClassName('task-label')[0].innerText = newTask.name;
         oldElem.getElementsByClassName('task-difficulty')[0].innerText = `${Math.abs(newTask.difficulty)}`;
         oldTask.updateFields(newTask);
+
+        if (newTask.completed) {
+            oldElem.classList.add('task-completed');
+        } else {
+            oldElem.classList.remove('task-completed');
+        }
+
     }
 
     deleteTaskFromList(taskIndex) {
