@@ -129,8 +129,9 @@ export class TaskManager {
 
     }
 
-    deleteTaskFromList(taskIndex) {
-        const task = this.addedTasksList.find(searchTask => searchTask.id === taskIndex);
+    deleteTaskFromList(taskId) {
+        const taskIndex = this.addedTasksList.findIndex(searchTask => searchTask.id === taskId);
+        const task = this.addedTasksList[taskIndex];
         task.domElement.remove();
         this.addedTasksList.splice(taskIndex, 1);
     }
