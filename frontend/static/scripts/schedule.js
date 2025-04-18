@@ -73,3 +73,10 @@ dateInput.addEventListener('input', function(event) {
     const redirectUrl = `/schedule?date=${selectedDate}`;
     window.location.href = redirectUrl;
 });
+
+document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.location.href = this.href;
+    });
+});

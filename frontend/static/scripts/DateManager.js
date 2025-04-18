@@ -56,9 +56,17 @@ export class DateManager {
     }
 
     updateDisplayedDates() {
-        document.getElementById('prev-date').textContent = `← ${this._formatDate(this.prevDate)}`;
+        document.getElementById('prev-date').textContent = `${this._formatDate(this.prevDate)}`;
+        document.getElementById('prev-date').href = `/schedule?date=${this.formatDateToHrefFormat(this.prevDate)}`
+        console.log(this.formatDateToHrefFormat(this.prevDate));
         // document.getElementById('current-date').textContent = this._formatDate(this._currentDate);
-        document.getElementById('next-date').textContent = `${this._formatDate(this.nextDate)} →`;
+        document.getElementById('next-date').textContent = `${this._formatDate(this.nextDate)}`;
+        document.getElementById('next-date').href = `/schedule?date=${this.formatDateToHrefFormat(this.nextDate)}`
+    }
+
+    formatDateToHrefFormat(date) {
+        const d = new Date(date);
+        return d.toISOString().split('T')[0];
     }
 
     onDateChange(callback) {
