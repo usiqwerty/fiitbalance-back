@@ -6,6 +6,13 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
+from typing import Annotated
+
+from fastapi import Request, FastAPI, Depends
+
+from dependencies import redirect_login_user
+from models.user import User
+
 from database import DBSession
 from dependencies import redirect_login_user
 from models.analytics import StatViews
@@ -26,7 +33,7 @@ def index(request: Request):
 
 
 @front_app.get("/schedule")
-def schedule(request: Request, date: str = None):
+def schedule(request: Request, user: Annotated[User, Depends(redirect_login_user)], date: str = None):
     current_date = datetime.datetime.now().date() if not date else datetime.datetime.strptime(date, "%Y-%m-%d").date()
     prev_date = current_date - datetime.timedelta(days=1)
     next_date = current_date + datetime.timedelta(days=1)
