@@ -7,9 +7,8 @@ import { DateManager } from './DateManager.js';
 document.addEventListener('DOMContentLoaded', () => {
 
     const dateManager = new DateManager();
+    dateManager.updateDisplayedDates()
     dateManager.onDateChange(() => {
-        workManager.loadTasks();
-        restManager.loadTasks();
         updateGlobalBalance();
     });
     dateManager.initDateNavigation();
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('work-list-block'),
         dateManager.apiDate
     );
-    
+        
     const restManager = new TaskManager(
         document.getElementById('rest-list-block'),
         dateManager.apiDate,

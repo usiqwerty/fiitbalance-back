@@ -1,63 +1,89 @@
 export class DateManager {
     constructor() {
-        this._currentDate = this._parseUrlDate();
+        const parsedDate = this._parseUrlDate();
+        if (!(parsedDate instanceof Date) || isNaN(parsedDate.getTime())) {
+            console.error("Invalid date, falling back to current date");
+            this._currentDate = new Date();
+        } else {
+            this._currentDate = parsedDate;
+        }
     }
-
 
     _parseUrlDate() {
-        const params = new URLSearchParams(window.location.search);
-        const dateStr = params.get('date');
-        return dateStr ? new Date(dateStr) : new Date();
+        const urlParams = new URLSearchParams(window.location.search);
+        let dateStr = urlParams.get('date');
+
+        if (!dateStr) {
+            const hashParams = new URLSearchParams(window.location.hash.substring(1));
+            dateStr = hashParams.get('date');
+        }
+
+        const parsedDate = dateStr ? new Date(dateStr) : new Date();
+
+        return isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
     }
 
-
-    get apiDate() {
-        return this._currentDate.toISOString().split('T')[0];
+    updateBrowserUrl(date) {
+        const newUrl = new URL(window.location);
+        newUrl.hash = '';
+        newUrl.searchParams.set('date', date.toISOString().split('T')[0]);
+        window.history.pushState({}, '', newUrl);
     }
 
+    get prevDate() {
+        const date = new Date(this._currentDate);
+        date.setDate(date.getDate() - 1);
+        return date;
+    }
 
-    get formattedDate() {
-        const day = this._currentDate.getDate();
-        const month = this._currentDate.toLocaleString('en', { month: 'long' });
-        
+    get nextDate() {
+        const date = new Date(this._currentDate);
+        date.setDate(date.getDate() + 1);
+        return date;
+    }
+
+    _formatDate(date) {
+        const day = date.getDate();
+        const month = date.toLocaleString('en', { month: 'short' });
+        const year = date.getFullYear();
+
         let suffix = 'th';
         if (day % 10 === 1 && day !== 11) suffix = 'st';
         if (day % 10 === 2 && day !== 12) suffix = 'nd';
         if (day % 10 === 3 && day !== 13) suffix = 'rd';
 
-        return `${day}${suffix} Of ${month}`;
+        return `${day}${suffix} ${month} ${year}`;
     }
 
-
-    get navigationDates() {
-        return {
-            prev: new Date(this._currentDate.setDate(this._currentDate.getDate() - 1)),
-            next: new Date(this._currentDate.setDate(this._currentDate.getDate() + 2))
-        };
-    }
-
-    updateBrowserUrl(date) {
-        const newUrl = new URL(window.location);
-        newUrl.searchParams.set('date', date.toISOString().split('T')[0]);
-        window.history.pushState({}, '', newUrl);
-    }
-    initDateNavigation() {
-        document.getElementById('prev-date').addEventListener('click', (e) => {
-            e.preventDefault();
-            this._currentDate.setDate(this._currentDate.getDate() - 1);
-            this.updateBrowserUrl(this._currentDate);
-            this.onDateChange();
-        });
-
-        document.getElementById('next-date').addEventListener('click', (e) => {
-            e.preventDefault();
-            this._currentDate.setDate(this._currentDate.getDate() + 1);
-            this.updateBrowserUrl(this._currentDate);
-            this.onDateChange();
-        });
+    updateDisplayedDates() {
+        document.getElementById('prev-date').textContent = `← ${this._formatDate(this.prevDate)}`;
+        document.getElementById('current-date').textContent = this._formatDate(this._currentDate);
+        document.getElementById('next-date').textContent = `${this._formatDate(this.nextDate)} →`;
     }
 
     onDateChange(callback) {
         this._dateChangeCallback = callback;
+    }
+
+    initDateNavigation() {
+        document.getElementById('prev-date').addEventListener('click', (e) => {
+            e.preventDefault();
+            this._currentDate = this.prevDate;
+            this.updateBrowserUrl(this._currentDate);
+            this._dateChangeCallback?.();
+            this.updateDisplayedDates();
+        });
+
+        document.getElementById('next-date').addEventListener('click', (e) => {
+            e.preventDefault();
+            this._currentDate = this.nextDate;
+            this.updateBrowserUrl(this._currentDate);
+            this._dateChangeCallback?.();
+            this.updateDisplayedDates();
+        });
+    }
+
+    get apiDate() {
+        return this._currentDate.toISOString().split('T')[0];
     }
 }
