@@ -1,4 +1,3 @@
-const apiBaseUrl = "http://127.0.0.1:8000";
 const redirectUrl = "/schedule";
 
 
@@ -27,7 +26,7 @@ function login() {
         },
         body: JSON.stringify(formData),
     };
-    fetch(apiBaseUrl + "/api/auth/login", requestOptions)
+    fetch("/api/auth/login", requestOptions)
         .then(r => {
             if (r.status === 200) {
                 setErrorMessage();
@@ -58,7 +57,7 @@ function register() {
         },
         body: JSON.stringify(formData),
     };
-    fetch(apiBaseUrl + "/api/auth/register", requestOptions)
+    fetch("/api/auth/register", requestOptions)
         .then(r => {
             if (r.status === 200) {
                 setErrorMessage();
