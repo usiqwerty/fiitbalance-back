@@ -161,12 +161,21 @@ export class TaskEditor {
     }
 
     show(taskManager, title = '', description = '', date = '', difficulty = 5, taskId = null, isUpdate = false) {
+        if (taskManager.isRest){
+            console.log("Было");
+            document.getElementById("difficulty-label").textContent = "rest level";
+        }
+        else {
+            document.getElementById("difficulty-label").textContent = "difficulty";
+        }
         this.isUpdate = isUpdate;
         if (isUpdate){
             this.deleteTaskBtn.classList.remove("hidden");
+            document.getElementById("add-task-final-button").textContent = "edit task";
         }
         else {
             this.deleteTaskBtn.classList.add("hidden");
+            document.getElementById("add-task-final-button").textContent = "add task";
         }
         this.taskId = taskId;
         this.taskManager = taskManager;
