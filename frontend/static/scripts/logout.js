@@ -1,8 +1,6 @@
-﻿const apiBaseUrl = "http://127.0.0.1:8000";
-
-async function logout() {
+﻿async function logout() {
     try {
-        const response = await fetch(`${apiBaseUrl}/api/auth/logout`, {
+        const response = await fetch(`/api/auth/logout`, {
             method: "POST",
             credentials: "include"
         });
