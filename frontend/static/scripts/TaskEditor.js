@@ -84,6 +84,9 @@ export class TaskEditor {
         }
     
         try {
+            if (title.trim() === ""){
+                throw new Error("Название задачи не может быть пустым");
+            }
             const response = await fetch('/api/tasks/add_task', {
                 method: 'POST',
                 headers: {
@@ -126,6 +129,9 @@ export class TaskEditor {
         }
     
         try {
+            if (title.trim() === ""){
+                throw new Error("Название задачи не может быть пустым");
+            }
             const response = await fetch('/api/tasks/update', {
                 method: 'POST',
                 headers: {
