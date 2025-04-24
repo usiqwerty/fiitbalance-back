@@ -37,6 +37,11 @@ def login(db: DBSession,
 
 @router.post('/register')
 def register(db: DBSession, response: Response, data: RegisterUser):
+    if len(data.email) < 5:
+        raise HTTPException(status_code=401, detail="Login should be at least 5 characters long")
+    if len(data.password) < 8:
+        raise HTTPException(status_code=401, detail="Password should be at least 8 characters long")
+
     if db.exec(select(User).where(User.email == data.email)).first() is not None:
         raise HTTPException(status_code=401, detail="Provided email is already in use")
 

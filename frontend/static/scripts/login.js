@@ -49,6 +49,14 @@ function register() {
         setErrorMessage("Passwords do not match");
         return;
     }
+    if (login.length < 5) {
+        setErrorMessage("Login should be at least 5 characters long");
+        return;
+    }
+    if (password.length < 8) {
+        setErrorMessage("Password should be at least 8 characters long");
+        return;
+    }
 
     const formData = {email: login, password: password};
     const requestOptions = {
