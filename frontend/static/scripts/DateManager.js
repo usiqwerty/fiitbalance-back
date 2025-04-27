@@ -35,6 +35,9 @@ export class DateManager {
         date.setDate(date.getDate() - 1);
         return date;
     }
+    get currentDate() {
+        return new Date(this._currentDate);;
+    }
 
     get nextDate() {
         const date = new Date(this._currentDate);
@@ -42,7 +45,7 @@ export class DateManager {
         return date;
     }
 
-    _formatDate(date) {
+    formatDate(date) {
         const day = date.getDate();
         const month = date.toLocaleString('en', { month: 'short' });
         const year = date.getFullYear();
@@ -51,16 +54,15 @@ export class DateManager {
         if (day % 10 === 1 && day !== 11) suffix = 'st';
         if (day % 10 === 2 && day !== 12) suffix = 'nd';
         if (day % 10 === 3 && day !== 13) suffix = 'rd';
-
         return `${day}${suffix} ${month} ${year}`;
     }
 
     updateDisplayedDates() {
-        document.getElementById('prev-date').textContent = `${this._formatDate(this.prevDate)}`;
+        document.getElementById('prev-date').textContent = `${this.formatDate(this.prevDate)}`;
         document.getElementById('prev-date').href = `/schedule?date=${this.formatDateToHrefFormat(this.prevDate)}`
         console.log(this.formatDateToHrefFormat(this.prevDate));
-        // document.getElementById('current-date').textContent = this._formatDate(this._currentDate);
-        document.getElementById('next-date').textContent = `${this._formatDate(this.nextDate)}`;
+        document.getElementById('week-stats').href = `/weekStat?date=${this.formatDateToHrefFormat(this.currentDate)}`
+        document.getElementById('next-date').textContent = `${this.formatDate(this.nextDate)}`;
         document.getElementById('next-date').href = `/schedule?date=${this.formatDateToHrefFormat(this.nextDate)}`
     }
 

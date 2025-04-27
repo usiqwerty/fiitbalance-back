@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.location.href = `/weekStat?date=${currentDate}`
         return
     }
+    else{
+        document.getElementById('schedule').href = `/schedule?date=${dateParam}`;
+    }
 
     const selectedDate = new Date(dateParam)
     const dayOfWeek = selectedDate.getDay() // 0 = Sunday, 1 = Monday, etc.
