@@ -177,7 +177,7 @@ export class TaskEditor {
         this.isUpdate = isUpdate;
         if (isUpdate){
             this.deleteTaskBtn.classList.remove("hidden");
-            document.getElementById("add-task-final-button").textContent = "edit task";
+            document.getElementById("add-task-final-button").textContent = "save changes";
         }
         else {
             this.deleteTaskBtn.classList.add("hidden");

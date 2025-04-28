@@ -80,3 +80,17 @@ document.querySelectorAll('a').forEach(link => {
         window.location.href = this.href;
     });
 });
+
+
+const descriptionTextarea = document.getElementById('task-description-area');
+
+descriptionTextarea.addEventListener('focus', function () {
+    this.setAttribute('data-placeholder', this.placeholder);
+    this.placeholder = '';
+});
+
+descriptionTextarea.addEventListener('blur', function () {
+    if (!this.value) {
+        this.placeholder = this.getAttribute('data-placeholder');
+    }
+});
