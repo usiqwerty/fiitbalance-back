@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("week-range").textContent = `${mondayFormatted} - ${sundayFormatted} balance`
 
-    const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    const weekDays = ["Понедельник", "Вторинк", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
     const weekData = []
 
     for (let i = 0; i < 7; i++) {

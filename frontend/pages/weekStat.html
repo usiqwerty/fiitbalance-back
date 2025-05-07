@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="header-container">
-    <button class="logout-button">Logout</button>
+    <button class="logout-button">Выйти</button>
 </div>
 
 <div class="centered-container geologica-regular">
@@ -12,10 +12,10 @@
         <div class="week-header">
             <h2 id="week-range" class="geologica-regular week-range">{{ week_start }} - {{ week_end }} balance</h2>
         </div>
-        <p class="no_account"><a href="/schedule" id="schedule">Back to schedule</a></p>
+        <p class="no_account"><a href="/schedule" id="schedule">вернуться к расписанию</a></p>
         <div class="geologica-regular balance-container">
             <div class="balance-labels">
-                <span class="balance-label-left">🔥 get more rest</span>
+                <span class="balance-label-left">🔥 побольше отдыхайте</span>
                 <span class="balance-label-right">🌴</span>
             </div>
             <input type="range" id="balance-scales-week" class="balance-scales" name="volume" min="0" max="450" disabled/>
@@ -23,14 +23,14 @@
 
         <!-- Weekly statistics -->
         <div class="week-stats">
-            <p id="busiest-day" class="stat-item"><strong>Busiest day:</strong> {{ busiest_day }}</p>
-            <p id="avg-workload" class="stat-item"><strong>Average workload:</strong> {{ avg_workload }}/10</p>
-            <p id="avg-rest" class="stat-item"><strong>Average rest level:</strong> {{ avg_rest }}/10</p>
+            <p id="busiest-day" class="stat-item"><strong>Самый напряженный день:</strong> {{ busiest_day }}</p>
+            <p id="avg-workload" class="stat-item"><strong>Средняя рабочая нагрузка:</strong> {{ avg_workload }}/10</p>
+            <p id="avg-rest" class="stat-item"><strong>Средний уровень отдыха:</strong> {{ avg_rest }}/10</p>
         </div>
 
         <!-- Daily balance scales -->
         <div class="daily-scales">
-            {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
+            {% for day in ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"] %}
             <div class="day-scale">
                 <div class="day-label"><strong>{{ day }}</strong></div>
                 <input type="range" id="balance-scales-{{ day.lower() }}" class="balance-scales" name="volume" min="0" max="450" disabled/>

@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="header-container">
-    <button class="logout-button">Logout</button>
+    <button class="logout-button">Выйти</button>
 </div>
 <div class="centered-container">
     <div class="dates_tape margin-bottom-10pt">
@@ -22,7 +22,7 @@
     <input type="range" id="balance-scales" class="balance-scales" name="volume" min="0" max="450" disabled/>
     <div id="work-list-block" class="plans-block margin-bottom-30pt">
         <div class="plans-add-block">
-            <h2>Plans:</h2>
+            <h2>Задачи:</h2>
             <img class="task-plus" src="../static/resources/plus.svg" alt="plus">
         </div>
         <div class="task-list">
@@ -37,7 +37,7 @@
 
     <div id="rest-list-block" class="plans-block margin-bottom-30pt">
         <div class="plans-add-block">
-            <h2>Rests:</h2>
+            <h2>Отдых:</h2>
             <img class="task-plus" src="../static/resources/rest plus.svg" alt="plus">
         </div>
         <div class="task-list">
@@ -50,12 +50,12 @@
         </div>
     </div>
 
-    <p class="no_account"><a href="/weekStat" id="week-stats">Week stats</a></p>
+    <p class="no_account"><a href="/weekStat" id="week-stats">Недельная статистика</a></p>
 
     <div class="overlay-background hidden" id="task-add-block">
         <div class="add-task-card" id="task-add-card">
-            <input class="input_field_1 geologica-regular difficulty-input-border-width task-label-input" id="task-title-input" type="text" placeholder="task name">
-            <textarea class="input_field_2 geologica-regular difficulty-input-border-width" type="text" placeholder="description" id="task-description-area"></textarea>
+            <input class="input_field_1 geologica-regular difficulty-input-border-width task-label-input" id="task-title-input" type="text" placeholder="название">
+            <textarea class="input_field_2 geologica-regular difficulty-input-border-width" type="text" placeholder="описание" id="task-description-area"></textarea>
             <input type="date"
                    class="input_field_1 geologica-regular difficulty-input-border-width"
                    id="task-date-input"
@@ -71,13 +71,13 @@
                     </button>
                 </div>
                 <div class="difficulty-label-block">
-                    <p id="difficulty-label" class="difficulty-label">difficulty</p>
+                    <p id="difficulty-label" class="difficulty-label">сложность</p>
                     <p class="difficulty-counter-label" id="difficulty-counter">5/10</p>
                 </div>
             </div>
             <div class="task-edit-buttons-box">
-                <button class="sign_up_button" id="add-task-final-button">add task</button>
-                <button class="sign_up_button" id="delete-task-final-button">delete task</button>
+                <button class="sign_up_button" id="add-task-final-button">добавить</button>
+                <button class="sign_up_button" id="delete-task-final-button">удалить</button>
             </div>
         </div>
     </div>

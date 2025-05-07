@@ -169,19 +169,19 @@ export class TaskEditor {
     show(taskManager, title = '', description = '', date = '', difficulty = 5, taskId = null, isUpdate = false) {
         if (taskManager.isRest){
             console.log("Было");
-            document.getElementById("difficulty-label").textContent = "rest level";
+            document.getElementById("difficulty-label").textContent = "качество отдыха";
         }
         else {
-            document.getElementById("difficulty-label").textContent = "difficulty";
+            document.getElementById("difficulty-label").textContent = "сложность";
         }
         this.isUpdate = isUpdate;
         if (isUpdate){
             this.deleteTaskBtn.classList.remove("hidden");
-            document.getElementById("add-task-final-button").textContent = "save changes";
+            document.getElementById("add-task-final-button").textContent = "сохранить изменения";
         }
         else {
             this.deleteTaskBtn.classList.add("hidden");
-            document.getElementById("add-task-final-button").textContent = "add task";
+            document.getElementById("add-task-final-button").textContent = "добавить";
         }
         this.taskId = taskId;
         this.taskManager = taskManager;
