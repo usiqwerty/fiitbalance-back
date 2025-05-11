@@ -46,16 +46,13 @@ export class DateManager {
     }
 
     formatDate(date) {
-        const day = date.getDate();
-        const month = date.toLocaleString('en', { month: 'short' });
+        const day = String(date.getDate()).padStart(2, '0'); // День с ведущим нулём
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Месяц с ведущим нулём (+1, так как месяцы начинаются с 0)
         const year = date.getFullYear();
-
-        let suffix = 'th';
-        if (day % 10 === 1 && day !== 11) suffix = 'st';
-        if (day % 10 === 2 && day !== 12) suffix = 'nd';
-        if (day % 10 === 3 && day !== 13) suffix = 'rd';
-        return `${day}${suffix} ${month} ${year}`;
+    
+        return `${day}.${month}.${year}`;
     }
+    
 
     updateDisplayedDates() {
         document.getElementById('prev-date').textContent = `${this.formatDate(this.prevDate)}`;
