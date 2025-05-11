@@ -10,12 +10,12 @@
 <div class="centered-container geologica-regular">
     <div class="week-stats-container">
         <div class="week-header">
-            <h2 id="week-range" class="geologica-regular week-range">{{ week_start }} - {{ week_end }} balance</h2>
+            <h2 id="week-range" class="geologica-regular week-range">{{ week_start }} - {{ week_end }}</h2>
         </div>
-        <p class="no_account"><a href="/schedule" id="schedule">вернуться к расписанию</a></p>
+        <p class="no_account"><a href="/schedule" id="schedule">Вернуться к расписанию</a></p>
         <div class="geologica-regular balance-container">
             <div class="balance-labels">
-                <span class="balance-label-left">🔥 побольше отдыхайте</span>
+                <span class="balance-label-left">🔥Старайтесь побольше отдыхать</span>
                 <span class="balance-label-right">🌴</span>
             </div>
             <input type="range" id="balance-scales-week" class="balance-scales" name="volume" min="0" max="450" disabled/>
@@ -30,10 +30,10 @@
 
         <!-- Daily balance scales -->
         <div class="daily-scales">
-            {% for day in ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"] %}
+            {% for day in [("Понедельник", "Monday"), ("Вторник", "Tuesday"), ("Среда", "Wednesday"), ("Четверг", "Thursday"), ("Пятница", "Friday"), ("Суббота", "Saturday"), ("Воскресенье", "Sunday")] %}
             <div class="day-scale">
-                <div class="day-label"><strong>{{ day }}</strong></div>
-                <input type="range" id="balance-scales-{{ day.lower() }}" class="balance-scales" name="volume" min="0" max="450" disabled/>
+                <div class="day-label"><strong>{{ day[0] }}</strong></div>
+                <input type="range" id="balance-scales-{{ day[1].lower() }}" class="balance-scales" name="volume" min="0" max="450" disabled/>
                 <div class="day-label-right"></div>
             </div>
             {% endfor %}

@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const mondayFormatted = formatDate(monday)
     const sundayFormatted = formatDate(sunday)
 
-    document.getElementById("week-range").textContent = `${mondayFormatted} - ${sundayFormatted} balance`
+    document.getElementById("week-range").textContent = `${mondayFormatted} - ${sundayFormatted}`
 
-    const weekDays = ["Понедельник", "Вторинк", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+    const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     const weekData = []
 
     for (let i = 0; i < 7; i++) {
@@ -98,9 +98,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         ? (totalRestDifficulty / totalRestTasks).toFixed(1)
         : 0
 
-    document.getElementById("busiest-day").innerHTML = `<strong>Busiest day:</strong> ${busiestDay.day}`
-    document.getElementById("avg-workload").innerHTML = `<strong>Average workload:</strong> ${avgWorkload}/10`
-    document.getElementById("avg-rest").innerHTML = `<strong>Average rest level:</strong> ${avgRest}/10`
+    const weekDayEngToRus = {
+        "monday" : "Понедельник",
+        "tuesday" : "Вторник",
+        "wednesday" : "Среда",
+        "thursday" :"Четверг",
+        "friday" : "Пятница",
+        "saturday" : "Суббота",
+        "sunday" : "Воскресенье"
+    }
+
+    document.getElementById("busiest-day").innerHTML = `<strong>Самый напряженный день:</strong> ${weekDayEngToRus[busiestDay.day.toLowerCase()]}`
+    document.getElementById("avg-workload").innerHTML = `<strong>Средняя рабочая нагрузка:</strong> ${avgWorkload}/10`
+    document.getElementById("avg-rest").innerHTML = `<strong>Средний уровень отдыха:</strong> ${avgRest}/10`
 
     const weekBalanceScales = new BalanceScales("#balance-scales-week")
     weekBalanceScales.updateBalance(allTasks)
@@ -108,16 +118,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function formatDate(date) {
     const day = date.getDate()
-    const month = date.toLocaleString("en-US", { month: "long" })
 
-    let suffix = "th"
-    if (day === 1 || day === 21 || day === 31) {
-        suffix = "st"
-    } else if (day === 2 || day === 22) {
-        suffix = "nd"
-    } else if (day === 3 || day === 23) {
-        suffix = "rd"
+    const month = date.toLocaleString("ru-RU", { month: "long" })
+
+    let monthGenitive = month.toLowerCase()
+
+    if (monthGenitive.endsWith("ь") || monthGenitive.endsWith("й")) {
+        monthGenitive = monthGenitive.slice(0, monthGenitive.length - 1) + "я"
+    } else{
+        monthGenitive += 'a'
     }
 
-    return `${day}${suffix} of ${month}`
+    return `${day} ${monthGenitive}`
 }
