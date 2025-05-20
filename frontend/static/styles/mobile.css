@@ -1,0 +1,18 @@
+@media screen and (max-width: 700px) {
+    /*.label_gap_login {*/
+    /*    font-size: 50px;*/
+    /*}*/
+    .input_field_1{
+        width: unset;
+        font-size: 30px;
+        color: black;
+    }
+    .centered-container{
+        width: 100%;
+        align-items: stretch;
+    }
+    .sign_up_button, .no_account{
+        align-self: center;
+        color:black;
+    }
+}
