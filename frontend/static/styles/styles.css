@@ -411,3 +411,10 @@
     opacity: 0.7;
     transition: opacity 0.3s ease;
 }
+.task-icon {
+    width: 20px;  /* Подбери размер под свои нужды */
+    height: 20px; /* Подбери размер под свои нужды */
+    margin-left: 5px; /* Небольшой отступ от цифры */
+    vertical-align: middle; /* Выравнивание по вертикали */
+    display: inline-block; /* Чтобы работали margin и vertical-align */
+}

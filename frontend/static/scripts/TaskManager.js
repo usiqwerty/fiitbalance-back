@@ -56,6 +56,17 @@ export class TaskManager {
         const newElem = this.taskList.appendChild(this.taskListEntry.cloneNode(true));
         newElem.getElementsByClassName('task-label')[0].innerText = task.name;
         newElem.getElementsByClassName('task-difficulty')[0].innerText = `${Math.abs(task.difficulty)}`;
+        const taskIcon = document.createElement('img');
+        taskIcon.className = 'task-icon';
+        if (this.isRest) {
+            taskIcon.src = '../static/resources/Пальма.svg';
+            taskIcon.alt = 'Пальма';
+        } else {
+            taskIcon.src = '../static/resources/Огонь.svg';
+            taskIcon.alt = 'Огонь';
+        }
+        const iconContainer = newElem.querySelector('.task-icon-container');
+        iconContainer.appendChild(taskIcon);
         newElem.querySelector('.task-deadline').textContent = task.deadline;
         newElem.classList.remove("hidden");
         newElem.getElementsByClassName('task-circle')[0].src = task.completed && task.difficulty < 0
