@@ -216,7 +216,7 @@
     align-items: center;
 }
 
-.add-task-card {
+.add-task-card, #task-add-content{
     display: flex;
     flex-direction: column;
     background-color: white;

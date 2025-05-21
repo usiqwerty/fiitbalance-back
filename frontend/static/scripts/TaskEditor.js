@@ -1,6 +1,8 @@
 import { Task } from './Task.js';
 
-
+function isMobile() {
+    return window.innerWidth <= 700;
+}
 export class TaskEditor {
     constructor(date) {
         this.taskAddBlock = document.getElementById('task-add-block');
@@ -15,6 +17,7 @@ export class TaskEditor {
         this.plusBtn = document.getElementById('difficulty-button-plus');
         this.minusBtn = document.getElementById('difficulty-button-minus');
         this.deleteTaskBtn = document.getElementById('delete-task-final-button');
+        this.nextStepBtn = document.getElementById('next-step-btn');
 
 
         this.plusBtn.addEventListener('click', () => {
@@ -45,6 +48,39 @@ export class TaskEditor {
                 this.hide();
             }
         });
+        this.stepNumber = 0;
+        this.nextStepBtn.addEventListener('click', this.nextStep.bind(this));
+    }
+    nextStep(){
+        const stepElements = this.taskAddCard.querySelectorAll('.input-step');
+        if (this.stepNumber === 0 && this.taskTitleInput.value.trim()===''){
+            alert("Название задачи не может быть пустым");
+            return;
+        }
+        if (this.stepNumber === stepElements.length-1){
+            this.nextStepBtn.textContent = 'V';
+        }
+        else if (this.stepNumber === stepElements.length){
+            return this.handleAddTaskButtonClick();
+        }
+        else{
+            this.nextStepBtn.textContent = '->';
+        }
+        this.showStep(this.stepNumber++);
+    }
+    showStep(step){
+        const stepElements = this.taskAddCard.querySelectorAll('.input-step');
+        this.taskAddCard.querySelectorAll('#next-step-btn, .sign_up_button')
+            .forEach((btn)=>btn.classList.add('hidden'));
+
+        for (let i=0; i<stepElements.length; i++){
+            if (i === step) {
+                stepElements[i].classList.remove('hidden');
+            }
+            else{
+                stepElements[i].classList.add('hidden');
+            }
+        }
     }
 
     async handleAddTaskButtonClick(event) {
@@ -194,5 +230,9 @@ export class TaskEditor {
         }
         this.taskDateInput.value = date;
         this.taskAddBlock.classList.remove("hidden");
+        if (isMobile()){
+            this.stepNumber = 0;
+            this.showStep(this.stepNumber);
+        }
     }
 }

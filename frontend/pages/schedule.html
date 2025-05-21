@@ -54,31 +54,36 @@
 
     <div class="overlay-background hidden" id="task-add-block">
         <div class="add-task-card" id="task-add-card">
-            <input class="input_field_1 geologica-regular difficulty-input-border-width task-label-input" id="task-title-input" type="text" placeholder="название">
-            <textarea class="input_field_2 geologica-regular difficulty-input-border-width" type="text" placeholder="описание" id="task-description-area"></textarea>
-            <input type="date"
-                   class="input_field_1 geologica-regular difficulty-input-border-width"
-                   id="task-date-input"
-                   required
-                   min="<?= date('Y-m-d') ?>">
-            <div class="difficulty-block">
-                <div class="difficulty-buttons">
-                    <button id="difficulty-button-plus">
-                        <img class="dif-plus" src="../static/resources/difficulty plus.svg" alt="plus">
-                    </button>
-                    <button id="difficulty-button-minus">
-                    <img class="dif-plus" src="../static/resources/difficulty minus.svg" alt="plus">
-                    </button>
+            <div id="task-add-content">
+                <input class="input_field_1 geologica-regular difficulty-input-border-width task-label-input input-step"
+                      id="task-title-input" type="text" placeholder="название">
+                <textarea class="input_field_2 geologica-regular difficulty-input-border-width input-step" type="text"
+                          placeholder="описание" id="task-description-area"></textarea>
+                <input type="date"
+                       class="input_field_1 geologica-regular difficulty-input-border-width input-step"
+                       id="task-date-input"
+                       required
+                       min="<?= date('Y-m-d') ?>">
+                <div class="difficulty-block input-step">
+                    <div class="difficulty-buttons">
+                        <button id="difficulty-button-plus">
+                            <img class="dif-plus" src="../static/resources/difficulty plus.svg" alt="plus">
+                        </button>
+                        <button id="difficulty-button-minus">
+                            <img class="dif-plus" src="../static/resources/difficulty minus.svg" alt="plus">
+                        </button>
+                    </div>
+                    <div class="difficulty-label-block ">
+                        <p id="difficulty-label" class="difficulty-label">сложность</p>
+                        <p class="difficulty-counter-label" id="difficulty-counter">5/10</p>
+                    </div>
                 </div>
-                <div class="difficulty-label-block">
-                    <p id="difficulty-label" class="difficulty-label">сложность</p>
-                    <p class="difficulty-counter-label" id="difficulty-counter">5/10</p>
+                <div class="task-edit-buttons-box">
+                    <button class="sign_up_button" id="add-task-final-button">добавить</button>
+                    <button class="sign_up_button" id="delete-task-final-button">удалить</button>
                 </div>
             </div>
-            <div class="task-edit-buttons-box">
-                <button class="sign_up_button" id="add-task-final-button">добавить</button>
-                <button class="sign_up_button" id="delete-task-final-button">удалить</button>
-            </div>
+            <button id="next-step-btn">-></button>
         </div>
     </div>
 </div>
