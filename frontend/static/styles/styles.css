@@ -418,3 +418,41 @@
     vertical-align: middle; /* Выравнивание по вертикали */
     display: inline-block; /* Чтобы работали margin и vertical-align */
 }
+.difficulty-container {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Расстояние между цифрой и иконкой */
+    margin-left: 10px; /* Отступ от названия задачи */
+}
+
+.task-difficulty {
+    margin: 0;
+    font-family: 'Geologica', serif;
+    height: 27pt;
+    order: 1; /* Цифра слева */
+}
+
+.task-icon-container {
+    order: 2; /* Иконка справа */
+}
+
+.task-icon {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+.balance-scales {
+    transition: background 0.3s ease; /* Анимация для фона */
+}
+
+.balance-scales::-webkit-slider-runnable-track {
+    transition: background 0.3s ease; /* Анимация трека */
+}
+
+.balance-scales::-webkit-slider-thumb {
+    transition: transform 0.2s ease; /* Анимация ползунка */
+}
+
+.balance-scales:active::-webkit-slider-thumb {
+    transform: scale(1.2); /* Увеличение при перетаскивании */
+}
