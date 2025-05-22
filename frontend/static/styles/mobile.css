@@ -1,23 +1,7 @@
 #next-step-btn{
     display: none;
 }
-
-html, body {
-    width: 100%;
-    margin: 0;
-    overflow-x: hidden;
-}
-
-body {
-    font-size: 16px;
-}
-
 @media screen and (max-width: 700px) {
-
-    body {
-        font-size: 14px;
-    }
-
     #next-step-btn{
         display: block;
         flex: none;
@@ -42,25 +26,22 @@ body {
     .centered-container{
         touch-action: manipulation;
         width: 100%;
-        align-items: center;
+        align-items: stretch;
         overflow: hidden;
-        padding: 10px;
     }
     .sign_up_button, .no_account{
         align-self: center;
         color:black;
-        margin: 10px auto;
-        font-size: 16pt;
-        text-align: center;
-        width: 90%;
-        display: block;
     }
     #task-add-block{
         align-items: stretch;
         flex-direction: column;
         justify-content: flex-end;
     }
-
+    html, body{
+        width: 100%;
+        margin: 0;
+    }
     .task-edit-buttons-box{
         align-self: center;
     }
@@ -72,88 +53,7 @@ body {
         padding: 0;
         width: 100vw;
         height: fit-content;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
-    }
-
-    .dates_tape {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .tape_date {
-        margin: 10px;
-        font-size: 1rem;
-    }
-
-    .central-date {
-        width: 120px;
-        padding-bottom: 8pt;
-        font-size: 1rem;
-    }
-
-    .balance-scales {
-        width: 90%;
-        margin-bottom: 20px;
-    }
-
-    .plans-block {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .plans-add-block {
-        margin-right: 0;
-        margin-bottom: 10px;
-        align-items: flex-start;
-    }
-
-    .plans-add-block h2 {
-        font-size: 1.2rem;
-        margin-bottom: 5px;
-    }
-
-    .task-plus {
-        width: 35pt;
-    }
-
-    .task-list {
-        width: 100%;
-    }
-
-    .task-note {
-        width: 100%;
-        font-size: 0.9rem;
-        margin: 5px 0;
-        padding: 8px;
-    }
-
-    .task-label {
-        font-size: 0.9rem;
-    }
-
-    .task-difficulty {
-        font-size: 0.9rem;
-    }
-
-    .task-circle {
-        height: 16pt;
-        margin-right: 5px;
-    }
-
-    .task-edit-buttons-box {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    .header-container{
-        margin-bottom: 20px;
-    }
-    .logout-button{
-        font-size: 14px;
-        padding: 8px 20px;
-        position: static;
-        margin: 10px auto;
     }
 }
