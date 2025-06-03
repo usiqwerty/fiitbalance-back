@@ -7,7 +7,7 @@
     <button class="logout-button">Выйти</button>
 </div>
 <div class="centered-container">
-    <div class="dates_tape margin-bottom-10pt">
+    <div class="dates_tape_pc margin-bottom-10pt">
         <a href="#" id="prev-date" class="tape_date date-link"></a>
         <img class="tape_date" src="{{ url_for('static', path='/resources/Arrow 2.svg') }}" alt="SVG Image">
         <input type="date"
@@ -19,15 +19,28 @@
         <a href="#" id="next-date" class="tape_date date-link"></a>
     </div>
 
+    <div class="dates_tape_mobile">
+        <input type="date"
+                   class="input_field_1 geologica-regular central-date"
+                   id="look-date-input"
+                   value="{{ current_date }}"
+                   min="<?= date('Y-m-d') ?>">
+        <div class="dates_tape_switch">
+            <a href="#" id="prev-date" class="tape_date date-link">Вчера</a>
+            <img class="tape_date tape_arrow" src="{{ url_for('static', path='/resources/Arrow 3.svg') }}" alt="SVG Image">
+            <a href="#" id="next-date" class="tape_date date-link">Завтра</a>
+        </div>
+    </div>
+
     <input type="range" id="balance-scales" class="balance-scales" name="volume" min="0" max="450" disabled/>
-    <div id="work-list-block" class="plans-block margin-bottom-30pt">
+    <div id="work-list-block" class="plans-block">
         <div class="plans-add-block">
             <h2>Задачи:</h2>
             <img class="task-plus" src="../static/resources/plus.svg" alt="plus">
         </div>
         <div class="task-list">
             <div class="task-note hidden task-entry-samlpe">
-                <img class="task-circle" src="../static/resources/Ellipse 1.svg" alt="plus">
+                <img class="task-circle" src="../static/resources/red-ellipse.svg" alt="plus">
                 <p class="task-label">working</p>
                 <div class="difficulty-container">
                     <div class="task-icon-container"></div> 
@@ -38,14 +51,14 @@
         </div>
     </div>
 
-    <div id="rest-list-block" class="plans-block margin-bottom-30pt">
+    <div id="rest-list-block" class="plans-block">
         <div class="plans-add-block">
             <h2>Отдых:</h2>
             <img class="task-plus" src="../static/resources/rest plus.svg" alt="plus">
         </div>
         <div class="task-list">
             <div class="task-note relax-note hidden task-entry-samlpe">
-                <img class="task-circle" src="../static/resources/Ellipse 1.svg" alt="plus">
+                <img class="task-circle" src="../static/resources/green-ellipse.svg" alt="plus">
                 <p class="task-label">working</p>
                 <div class="difficulty-container">
                     <div class="task-icon-container"></div> 
@@ -54,6 +67,11 @@
                 <p class="task-deadline"></p>
             </div>
         </div>
+    </div>
+
+    <div class="task-rest-add-block">
+        <img class="task-plus" id="task_plus" src="../static/resources/task plus.svg" alt="plus">
+        <img class="task-plus" id="rest_plus" src="../static/resources/rest plus.svg" alt="plus">
     </div>
 
     <p class="no_account"><a href="/weekStat" id="week-stats">Недельная статистика</a></p>

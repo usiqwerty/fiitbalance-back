@@ -13,6 +13,13 @@ export class TaskManager {
 
         
         this.addTaskButton = this.listElement.querySelector('.task-plus');
+        if (isRest){
+            this.addTaskButton2 = document.getElementById('rest_plus');
+        }
+        else{
+            this.addTaskButton2 = document.getElementById("task_plus");
+        }
+        
 
         this.loadTasks();
     }
@@ -73,7 +80,7 @@ export class TaskManager {
                                                                                 ? '../static/resources/relax_ellipse.svg'
                                                                                 : task.completed && task.difficulty > 0
                                                                                     ? '../static/resources/work_ellipse.svg'
-                                                                                    : '../static/resources/Ellipse 1.svg';
+                                                                                    : (task.difficulty > 0 ? '../static/resources/red-ellipse.svg' : '../static/resources/green-ellipse.svg');
 
         if (task.completed) {
             newElem.classList.add('task-completed');
@@ -95,7 +102,7 @@ export class TaskManager {
                     });
 
                     console.log('Статус ответа:', response.status);
-                    if (circle.src.includes('Ellipse') && foundTask.completed === false) {
+                    if ((circle.src.includes('red') || circle.src.includes('green')) && foundTask.completed === false) {
                         foundTask.completed = true;
                         newElem.classList.add('task-completed');
                         if (foundTask.difficulty > 0){
@@ -104,7 +111,11 @@ export class TaskManager {
                             circle.src = '../static/resources/relax_ellipse.svg';
                         }
                     } else {
-                        circle.src = '../static/resources/Ellipse 1.svg';
+                        if (foundTask.difficulty > 0){
+                            circle.src = '../static/resources/red-ellipse.svg';
+                        } else{
+                            circle.src = '../static/resources/green-ellipse.svg';
+                        }
                         foundTask.completed = false;
                         newElem.classList.remove('task-completed');
                     }
@@ -151,6 +162,9 @@ export class TaskManager {
         this.taskEditor = taskEditor;
         const lll = this;
         this.addTaskButton.onclick = function() {
+            taskEditor.show(lll);
+        };
+        this.addTaskButton2.onclick = function() {
             taskEditor.show(lll);
         };
     }
