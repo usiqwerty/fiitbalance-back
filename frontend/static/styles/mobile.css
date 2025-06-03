@@ -7,9 +7,11 @@
         flex: none;
         align-self: stretch;
     }
+
     #task-add-content > *{
         width: 100%;
     }
+
     #task-add-content{
         flex: auto;
         display: flex;
@@ -18,36 +20,46 @@
         flex-direction: column;
         align-items: stretch;
     }
+
     .input_field_1, .input_field_2{
         width: unset;
         font-size: 30px;
         color: black;
     }
+
     .centered-container{
         touch-action: manipulation;
         width: 100%;
         align-items: stretch;
         overflow: hidden;
     }
-    .sign_up_button, .no_account{
+
+    .sign_up_button{
         align-self: center;
         color:black;
     }
+
     #task-add-block{
         align-items: stretch;
         flex-direction: column;
         justify-content: flex-end;
     }
-    html, body{
+
+    html, body, h1, h2, h3, p, ul {
+        margin: 0px;
+        margin-bottom: 5px;
+        padding: 0;
         width: 100%;
-        margin: 0;
     }
+
     .task-edit-buttons-box{
         align-self: center;
     }
+
     .task-label-input{
         margin-top: 5pt;
     }
+
     .add-task-card{
         align-items: center;
         padding: 0;
@@ -55,5 +67,72 @@
         height: fit-content;
         flex-direction: row;
         justify-content: center;
+    }
+
+    .week-stats-container {
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .week-stats {
+        border-radius: 8px;
+        margin-bottom: 0px;
+        margin-left: 5%;
+        font-size: 20px;
+    }
+
+    .day-scale {
+        margin-bottom: 10px;
+    }
+
+    .day-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.5rem;
+        margin-left: 5%;
+    }
+
+    .balance-scales {
+        width: 90%;
+        height: 30px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 5%;
+        border-radius: 20px;
+    }
+
+    .label {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 30pt;
+    }
+
+    .no_account a {
+        text-decoration: none;
+        font-size: 1.5rem;
+        width: auto;
+        margin-left: 5%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .week-header {
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+
+    .week-range {
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+
+    .stat_item {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-weight: 100;
     }
 }
