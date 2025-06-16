@@ -109,6 +109,7 @@ export class TaskEditor {
     }
 
     async addTask(event) {
+        this.hide();
         const title = this.taskTitleInput.value;
         const description = this.taskDescriptionArea.value;
         const date = this.taskDateInput.value;
@@ -147,7 +148,6 @@ export class TaskEditor {
             if (this.date == date) {
                 this.taskManager.addTaskToList(new Task(createdTask.id, title, description, difficulty, 0, 1, 0));
             }
-            this.hide();
     
         } catch (error) {
             console.error('Ошибка при создании задачи:', error);
