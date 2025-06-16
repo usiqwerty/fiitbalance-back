@@ -61,6 +61,7 @@ export class TaskManager {
 
     addTaskToList(task) {
         const newElem = this.taskList.appendChild(this.taskListEntry.cloneNode(true));
+        newElem.style.cssText = `margin-left: 50pt;`;
         newElem.getElementsByClassName('task-label')[0].innerText = task.name;
         newElem.getElementsByClassName('task-difficulty')[0].innerText = `${Math.abs(task.difficulty)}`;
         const taskIcon = document.createElement('img');

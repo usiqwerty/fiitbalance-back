@@ -100,8 +100,6 @@
 .no_account {
     font-size: 15pt;
     font-family: "Geologica", serif;
-    text-align: center;
-    width: fit-content;
 }
 
 .dates_tape_pc {
@@ -137,7 +135,7 @@
     font-family: 'Geologica', sans-serif;
     font-size: 15pt;
     align-items: center;
-    margin-right: 30pt;
+    margin-right: 0pt;
 }
 
 .plans-add-block > h2 {
