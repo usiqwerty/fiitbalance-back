@@ -57,10 +57,10 @@ export class TaskEditor {
             alert("Название задачи не может быть пустым");
             return;
         }
-        if (this.stepNumber === stepElements.length-1){
+        if (this.stepNumber === stepElements.length-2){
             this.nextStepBtn.textContent = 'V';
         }
-        else if (this.stepNumber === stepElements.length){
+        else if (this.stepNumber === stepElements.length-1){
             this.nextStepBtn.textContent = '->';
             return this.handleAddTaskButtonClick();
         }
