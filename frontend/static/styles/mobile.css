@@ -26,7 +26,7 @@ body {
         align-self: stretch;
     }
     #task-add-content > *{
-        width: 100%;
+        width: 230pt;
     }
     #task-add-content{
         flex: auto;

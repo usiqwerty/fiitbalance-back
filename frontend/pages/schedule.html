@@ -22,13 +22,13 @@
     <div class="dates_tape_mobile">
         <input type="date"
                    class="input_field_1 geologica-regular central-date"
-                   id="look-date-input"
+                   id="look-date-input-mobile"
                    value="{{ current_date }}"
                    min="<?= date('Y-m-d') ?>">
         <div class="dates_tape_switch">
-            <a href="#" id="prev-date" class="tape_date date-link">Вчера</a>
+            <a href="#" id="prev-date-mobile" class="tape_date date-link">Вчера</a>
             <img class="tape_date tape_arrow" src="{{ url_for('static', path='/resources/Arrow 3.svg') }}" alt="SVG Image">
-            <a href="#" id="next-date" class="tape_date date-link">Завтра</a>
+            <a href="#" id="next-date-mobile" class="tape_date date-link">Завтра</a>
         </div>
     </div>
 
@@ -107,7 +107,7 @@
                     <button class="sign_up_button" id="delete-task-final-button">удалить</button>
                 </div>
             </div>
-            <button id="next-step-btn">-></button>
+            <button class="sign_up_button" id="next-step-btn">-></button>
         </div>
     </div>
 </div>

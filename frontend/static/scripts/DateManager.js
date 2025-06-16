@@ -57,10 +57,12 @@ export class DateManager {
     updateDisplayedDates() {
         document.getElementById('prev-date').textContent = `${this.formatDate(this.prevDate)}`;
         document.getElementById('prev-date').href = `/schedule?date=${this.formatDateToHrefFormat(this.prevDate)}`
+        document.getElementById('prev-date-mobile').href = `/schedule?date=${this.formatDateToHrefFormat(this.prevDate)}`
         console.log(this.formatDateToHrefFormat(this.prevDate));
         document.getElementById('week-stats').href = `/weekStat?date=${this.formatDateToHrefFormat(this.currentDate)}`
         document.getElementById('next-date').textContent = `${this.formatDate(this.nextDate)}`;
         document.getElementById('next-date').href = `/schedule?date=${this.formatDateToHrefFormat(this.nextDate)}`
+        document.getElementById('next-date-mobile').href = `/schedule?date=${this.formatDateToHrefFormat(this.nextDate)}`
     }
 
     formatDateToHrefFormat(date) {

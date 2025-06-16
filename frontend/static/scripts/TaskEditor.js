@@ -61,12 +61,13 @@ export class TaskEditor {
             this.nextStepBtn.textContent = 'V';
         }
         else if (this.stepNumber === stepElements.length){
+            this.nextStepBtn.textContent = '->';
             return this.handleAddTaskButtonClick();
         }
         else{
             this.nextStepBtn.textContent = '->';
         }
-        this.showStep(this.stepNumber++);
+        this.showStep(++this.stepNumber);
     }
     showStep(step){
         const stepElements = this.taskAddCard.querySelectorAll('.input-step');
@@ -204,7 +205,6 @@ export class TaskEditor {
 
     show(taskManager, title = '', description = '', date = '', difficulty = 5, taskId = null, isUpdate = false) {
         if (taskManager.isRest){
-            console.log("Было");
             document.getElementById("difficulty-label").textContent = "качество отдыха";
         }
         else {

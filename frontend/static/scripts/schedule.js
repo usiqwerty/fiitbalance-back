@@ -68,11 +68,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 const dateInput = document.getElementById('look-date-input');
-dateInput.addEventListener('input', function(event) {
+const dateInputMobile = document.getElementById('look-date-input-mobile');
+dateInput.addEventListener('input', calendarClickHandle);
+dateInputMobile.addEventListener('input', calendarClickHandle);
+
+function calendarClickHandle(event) {
     const selectedDate = event.target.value;
     const redirectUrl = `/schedule?date=${selectedDate}`;
     window.location.href = redirectUrl;
-});
+}
+
 
 document.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', function(event) {
