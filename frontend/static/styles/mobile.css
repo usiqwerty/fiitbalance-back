@@ -126,9 +126,21 @@ body {
     }
 
     .plans-block {
-        margin: 15px 0;
+        margin: 0;
+        padding-top: 10pt;
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .day-scale {
+        width: 100vw;
+        margin-bottom: 10px;
+    }
+
+    .balance-container {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
     }
 
     .plans-add-block {
@@ -216,10 +228,6 @@ body {
 
     .daily-scales {
         margin-top: 25px;
-    }
-
-    .day-scale {
-        margin-bottom: 10px;
     }
 
     .day-label {

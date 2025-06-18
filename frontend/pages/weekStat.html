@@ -25,7 +25,9 @@
             {% for day in [("Понедельник", "Monday"), ("Вторник", "Tuesday"), ("Среда", "Wednesday"), ("Четверг", "Thursday"), ("Пятница", "Friday"), ("Суббота", "Saturday"), ("Воскресенье", "Sunday")] %}
             <div class="day-scale">
                 <div class="day-label"><strong>{{ day[0] }}</strong></div>
-                <input type="range" id="balance-scales-{{ day[1].lower() }}" class="balance-scales" name="volume" min="0" max="450" disabled/>
+                <div class="balance-container">
+                    <input type="range" id="balance-scales-{{ day[1].lower() }}" class="balance-scales" name="volume" min="0" max="450" disabled/>
+                </div>
                 <div class="day-label-right"></div>
             </div>
             {% endfor %}
