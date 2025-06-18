@@ -205,7 +205,7 @@ export class TaskEditor {
 
     show(taskManager, title = '', description = '', date = '', difficulty = 5, taskId = null, isUpdate = false) {
         if (taskManager.isRest){
-            document.getElementById("difficulty-label").textContent = "качество отдыха";
+            document.getElementById("difficulty-label").textContent = "степень отдыха";
         }
         else {
             document.getElementById("difficulty-label").textContent = "сложность";

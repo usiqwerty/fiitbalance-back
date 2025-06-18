@@ -61,7 +61,6 @@ export class TaskManager {
 
     addTaskToList(task) {
         const newElem = this.taskList.appendChild(this.taskListEntry.cloneNode(true));
-        newElem.style.cssText = `margin-left: 50pt;`;
         newElem.getElementsByClassName('task-label')[0].innerText = task.name;
         newElem.getElementsByClassName('task-difficulty')[0].innerText = `${Math.abs(task.difficulty)}`;
         const taskIcon = document.createElement('img');
@@ -77,10 +76,7 @@ export class TaskManager {
         iconContainer.appendChild(taskIcon);
         newElem.querySelector('.task-deadline').textContent = task.deadline;
         newElem.classList.remove("hidden");
-        newElem.getElementsByClassName('task-circle')[0].src = task.completed && task.difficulty < 0
-                                                                                ? '../static/resources/relax_ellipse.svg'
-                                                                                : task.completed && task.difficulty > 0
-                                                                                    ? '../static/resources/work_ellipse.svg'
+        newElem.getElementsByClassName('task-circle')[0].src = task.completed ? '../static/resources/work_ellipse.svg'
                                                                                     : (task.difficulty > 0 ? '../static/resources/red-ellipse.svg' : '../static/resources/green-ellipse.svg');
 
         if (task.completed) {

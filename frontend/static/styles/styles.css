@@ -127,6 +127,7 @@
     display: flex;
     align-items: flex-start;
     flex-direction: row;
+    padding-top: 15pt;
 }
 
 .plans-add-block {
@@ -163,11 +164,12 @@
     border: 2pt solid black;
     margin: 10pt;
     margin-top: 0pt;
+    margin-bottom: 7pt;
     width: 350pt;
     color: white;
     padding: 5pt;
     padding-top: 0;
-    background-color: #646464;
+    background-color: #F0334C;
     padding-top: 5pt;
 }
 
@@ -279,11 +281,11 @@
     -webkit-appearance: none;
     appearance: none;
     width: 500pt;
-    height: 15px;
+    height: 40px;
     background: linear-gradient(90deg,rgba(235, 0, 0, 1) 0%, rgba(235, 204, 54, 1) 25%, rgba(0, 219, 91, 1) 50%, rgba(36, 171, 191, 1) 79%, rgba(0, 115, 255, 1) 100%);
     outline: none;
     cursor: pointer;
-    margin-bottom: 30pt;
+    margin-bottom: 15pt;
     margin-top: 10pt;
 }
 
@@ -291,16 +293,16 @@
     -webkit-appearance: none;
     appearance: none;
     width: 3px;
-    height: 30px;
+    height: 36px;
     background: black;
     cursor: pointer;
     border: none;
-    margin-top: -8px;
+    margin-top: -13px;
 }
 
 .balance-scales::-moz-range-thumb {
     width: 3px;
-    height: 30px;
+    height: 36px;
     background: black;
     border: none;
     cursor: pointer;
@@ -318,6 +320,16 @@
     height: 10px;
     background: linear-gradient(90deg,rgba(235, 0, 0, 1) 0%, rgba(235, 204, 54, 1) 25%, rgba(0, 219, 91, 1) 50%, rgba(36, 171, 191, 1) 79%, rgba(0, 115, 255, 1) 100%);
     border-radius: 5px;
+}
+
+.scales-icon {
+    width: 20pt;
+    padding-bottom: 5pt;
+}
+
+.scales-div {
+    display: flex;
+    justify-content: center;
 }
 
 .icons {
@@ -364,16 +376,13 @@
     font-size: 16px;
     transition: background 0.3s;
 }
-.header-container {
-    margin-bottom: 60px;
-}
 .logout-button:hover {
     background: #cc0000;
 }
 
 .header-container {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 }
 .error-message {
     background: #ffebee;
@@ -453,4 +462,12 @@
 
 .balance-scales:active::-webkit-slider-thumb {
     transform: scale(1.2); /* Увеличение при перетаскивании */
+}
+
+.dates_tape_mobile {
+    display: none;
+}
+
+.task-rest-add-block {
+    display: none;
 }
