@@ -37,13 +37,13 @@ body {
         align-items: stretch;
     }
     .input_field_1, .input_field_2{
-        width: unset;
+        width: 90vw;
         font-size: 30px;
         color: black;
     }
     .centered-container{
         touch-action: manipulation;
-        width: 100%;
+        width: 100vw;
         align-items: center;
         overflow: hidden;
         padding: 0;

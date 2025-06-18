@@ -1,0 +1,9 @@
+@media only screen and (max-width: 768px) {
+    body {
+        background: url('/static/resources/unauthorized 2.svg') no-repeat center center fixed;
+    }
+
+    .overlay {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,26 @@
+body, html {
+    height: 100%;
+}
+
+body {
+    background: url('/static/resources/unauthorized.svg') no-repeat center center fixed;
+    background-size: contain;
+    font-family: 'Jomhuria', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px 30px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.overlay a {
+    color: blue;
+    text-decoration: none;
+}
+
