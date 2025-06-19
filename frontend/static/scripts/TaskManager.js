@@ -102,11 +102,7 @@ export class TaskManager {
                     if ((circle.src.includes('red') || circle.src.includes('green')) && foundTask.completed === false) {
                         foundTask.completed = true;
                         newElem.classList.add('task-completed');
-                        if (foundTask.difficulty > 0){
-                            circle.src = '../static/resources/work_ellipse.svg';
-                        } else{
-                            circle.src = '../static/resources/relax_ellipse.svg';
-                        }
+                        circle.src = '../static/resources/work_ellipse.svg';
                     } else {
                         if (foundTask.difficulty > 0){
                             circle.src = '../static/resources/red-ellipse.svg';
