@@ -1,4 +1,11 @@
 export class DateManager {
+    static LINKS = [
+        { id: 'prev-date',         dateKey: 'prevDate'  },
+        { id: 'prev-date-mobile',  dateKey: 'prevDate'  },
+        { id: 'next-date',         dateKey: 'nextDate'  },
+        { id: 'next-date-mobile',  dateKey: 'nextDate'  },
+    ];
+
     constructor() {
         const parsedDate = this._parseUrlDate();
         if (!(parsedDate instanceof Date) || isNaN(parsedDate.getTime())) {
@@ -36,7 +43,7 @@ export class DateManager {
         return date;
     }
     get currentDate() {
-        return new Date(this._currentDate);;
+        return new Date(this._currentDate);
     }
 
     get nextDate() {
@@ -52,17 +59,20 @@ export class DateManager {
     
         return `${day}.${month}.${year}`;
     }
-    
 
     updateDisplayedDates() {
-        document.getElementById('prev-date').textContent = `${this.formatDate(this.prevDate)}`;
-        document.getElementById('prev-date').href = `/schedule?date=${this.formatDateToHrefFormat(this.prevDate)}`
-        document.getElementById('prev-date-mobile').href = `/schedule?date=${this.formatDateToHrefFormat(this.prevDate)}`
-        console.log(this.formatDateToHrefFormat(this.prevDate));
-        document.getElementById('week-stats').href = `/weekStat?date=${this.formatDateToHrefFormat(this.currentDate)}`
-        document.getElementById('next-date').textContent = `${this.formatDate(this.nextDate)}`;
-        document.getElementById('next-date').href = `/schedule?date=${this.formatDateToHrefFormat(this.nextDate)}`
-        document.getElementById('next-date-mobile').href = `/schedule?date=${this.formatDateToHrefFormat(this.nextDate)}`
+        DateManager.LINKS.forEach(({ id, dateKey }) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const d = this[dateKey];
+            el.textContent = this.formatDate(d);
+            el.href        = `/schedule?date=${this.formatDateToHrefFormat(d)}`;
+        });
+
+        const ws = document.getElementById('week-stats');
+        if (ws) {
+            ws.href = `/weekStat?date=${this.formatDateToHrefFormat(this.currentDate)}`;
+        }
     }
 
     formatDateToHrefFormat(date) {
@@ -75,20 +85,16 @@ export class DateManager {
     }
 
     initDateNavigation() {
-        document.getElementById('prev-date').addEventListener('click', (e) => {
-            e.preventDefault();
-            this._currentDate = this.prevDate;
-            this.updateBrowserUrl(this._currentDate);
-            this._dateChangeCallback?.();
-            this.updateDisplayedDates();
-        });
-
-        document.getElementById('next-date').addEventListener('click', (e) => {
-            e.preventDefault();
-            this._currentDate = this.nextDate;
-            this.updateBrowserUrl(this._currentDate);
-            this._dateChangeCallback?.();
-            this.updateDisplayedDates();
+        DateManager.LINKS.forEach(({ id, dateKey }) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.addEventListener('click', e => {
+                e.preventDefault();
+                this._currentDate = this[dateKey];
+                this.updateBrowserUrl(this._currentDate);
+                this._dateChangeCallback?.();
+                this.updateDisplayedDates();
+            });
         });
     }
 

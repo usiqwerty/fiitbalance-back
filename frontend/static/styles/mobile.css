@@ -88,12 +88,16 @@ body {
         align-items: center;
     }
 
+    .dates_tape_mobile .date-link {
+        text-decoration: underline;
+    }
+
     .tape_date {
         margin: 0 5px;
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         font-style: italic;
         font-weight: 450;
-        text-decoration: none;
+        text-decoration: underline;
     }
 
     .dates_tape_switch {
@@ -250,7 +254,7 @@ body {
     }
 
     .no_account a {
-        text-decoration: none;
+        text-decoration: underline;
         font-size: 2rem;
     }
 
