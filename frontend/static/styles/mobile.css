@@ -13,12 +13,9 @@ body {
 }
 
 @media screen and (max-width: 700px) {
-
     body {
         font-size: 14px;
     }
-
-
 
     #next-step-btn{
         display: block;

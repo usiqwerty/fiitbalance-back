@@ -42,6 +42,7 @@ export class DateManager {
         date.setDate(date.getDate() - 1);
         return date;
     }
+
     get currentDate() {
         return new Date(this._currentDate);
     }

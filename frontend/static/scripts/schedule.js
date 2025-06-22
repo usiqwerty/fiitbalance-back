@@ -28,9 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     workManager.setTaskEditor(taskEditor);
     restManager.setTaskEditor(taskEditor);
         
-        
     const balanceScales = new BalanceScales("#balance-scales");
-        
 
     const updateGlobalBalance = () => {
         balanceScales.updateBalance([
@@ -38,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ...restManager.addedTasksList
         ]);
     };
-
 
     const originalAddTask = TaskManager.prototype.addTaskToList;
     TaskManager.prototype.addTaskToList = function(task) {
@@ -57,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         originalUpdateTask.call(this, task);
         updateGlobalBalance();
     };
-
 
     window.addEventListener('popstate', () => {
         dateManager._currentDate = dateManager._parseUrlDate();

@@ -3,7 +3,7 @@ body, html {
 }
 
 body {
-    background: url('/static/resources/unauthorized.svg') no-repeat center center fixed;
+    background: url('frontend/static/resources/unauthorized.svg') no-repeat center center fixed;
     background-size: contain;
     font-family: 'Jomhuria', sans-serif;
     display: flex;

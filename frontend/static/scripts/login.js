@@ -45,15 +45,15 @@ function register() {
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('password-confirm').value;
     if (password !== passwordConfirm){
-        setErrorMessage("Passwords do not match");
+        setErrorMessage("Пароли не совпадают");
         return;
     }
     if (login.length < 5) {
-        setErrorMessage("Login should be at least 5 characters long");
+        setErrorMessage("Логин должен состоять из 5 символов и более");
         return;
     }
     if (password.length < 8) {
-        setErrorMessage("Password should be at least 8 characters long");
+        setErrorMessage("Логин должен состоять из 8 символов и более");
         return;
     }
 

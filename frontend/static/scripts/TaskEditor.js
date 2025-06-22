@@ -204,7 +204,6 @@ export class TaskEditor {
             document.getElementById("difficulty-label").textContent = "сложность";
         }
 
-        // Обновляем иконки кнопок в зависимости от типа задачи
         const plusButton = document.getElementById("difficulty-button-plus");
         const minusButton = document.getElementById("difficulty-button-minus");
         const plusImg = plusButton.querySelector("img");

@@ -50,7 +50,7 @@ export class TaskManager {
                 tasks = tasks.filter(task => task["difficulty"] < 0);
             }
             tasks.forEach(task => {
-                let newTask = new Task(task["id"], task["name"], task["text"], task["difficulty"], 0, 1, 0, task["completed"])
+                let newTask = new Task(task["id"], task["name"], task["text"], task["difficulty"], 0,  0, task["completed"])
                 this.addTaskToList(newTask);
             });
     
