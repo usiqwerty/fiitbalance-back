@@ -1,6 +1,6 @@
 @media only screen and (max-width: 768px) {
     body {
-        background: url('frontend/static/resources/unauthorized mobile.svg') no-repeat center center fixed;
+        background: url('/static/resources/unauthorized mobile.svg') no-repeat center center fixed;
     }
 
     .overlay {
